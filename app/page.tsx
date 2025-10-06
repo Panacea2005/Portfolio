@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { MenuOverlay } from "@/components/menu-overlay"
 
 export default function Page() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -86,83 +87,6 @@ export default function Page() {
   )
 }
 
-function MenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ x: "-100%" }}
-          animate={{ x: 0 }}
-          exit={{ x: "-100%" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl"
-        >
-          {/* Glowing sphere effect */}
-          <div className="absolute right-[20%] top-1/2 -translate-y-1/2 w-[600px] h-[600px]">
-            <div className="relative w-full h-full">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/20 via-blue-500/30 to-purple-600/40 blur-3xl" />
-              <div className="absolute inset-[15%] rounded-full bg-gradient-to-br from-cyan-300/30 via-blue-400/40 to-purple-500/50 blur-2xl" />
-            </div>
-          </div>
-
-          {/* Header */}
-          <header className="relative z-20 flex items-center justify-between px-12 py-8">
-            <div className="text-sm tracking-wider font-light">KAITO NOTE</div>
-            <button onClick={onClose} className="text-sm tracking-wider font-light hover:opacity-60 transition-opacity">
-              [CLOSE]
-            </button>
-          </header>
-
-          {/* Menu Content */}
-          <div className="relative z-20 flex items-center justify-center min-h-[calc(100vh-100px)] px-12">
-            <div className="max-w-6xl w-full">
-              {/* Navigation */}
-              <motion.nav
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="space-y-8 mb-24"
-              >
-                <div className="text-7xl font-light tracking-tight hover:opacity-60 transition-opacity">INDEX</div>
-                <div className="text-7xl font-light tracking-tight hover:opacity-60 transition-opacity">PROFILE</div>
-                <div className="text-7xl font-light tracking-tight hover:opacity-60 transition-opacity">WORKS</div>
-                <div className="text-7xl font-light tracking-tight hover:opacity-60 transition-opacity">CONTACT</div>
-              </motion.nav>
-
-              {/* Social Links */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="grid grid-cols-2 gap-x-32 gap-y-4 text-lg font-light"
-              >
-                <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-                  X <span className="text-sm">↗</span>
-                </div>
-                <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-                  Instagram <span className="text-sm">↗</span>
-                </div>
-                <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-                  Vimeo <span className="text-sm">↗</span>
-                </div>
-                <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-                  YouTube <span className="text-sm">↗</span>
-                </div>
-                <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-                  Behance <span className="text-sm">↗</span>
-                </div>
-                <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-                  GitHub <span className="text-sm">↗</span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
-}
-
 function HeroSection({ onMenuClick }: { onMenuClick: () => void }) {
   return (
     <section className="relative min-h-screen overflow-hidden">
@@ -237,7 +161,7 @@ function HeroSection({ onMenuClick }: { onMenuClick: () => void }) {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="absolute left-[8%] top-[45%] text-xs tracking-wider font-light"
           >
-            [MOTION DESIGN]
+            [AI/ML SOLUTIONS]
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
@@ -253,7 +177,7 @@ function HeroSection({ onMenuClick }: { onMenuClick: () => void }) {
             transition={{ delay: 0.7, duration: 0.8 }}
             className="absolute left-[60%] top-[45%] text-xs tracking-wider font-light"
           >
-            [VISUAL DESIGN]
+            [WEB3 & BLOCKCHAIN]
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
@@ -261,7 +185,7 @@ function HeroSection({ onMenuClick }: { onMenuClick: () => void }) {
             transition={{ delay: 0.8, duration: 0.8 }}
             className="absolute right-[8%] top-[45%] text-xs tracking-wider font-light"
           >
-            [ART DIRECTION]
+            [DATA VISUALIZATION]
           </motion.div>
 
           {/* Mission Statement */}
@@ -272,8 +196,8 @@ function HeroSection({ onMenuClick }: { onMenuClick: () => void }) {
             className="absolute right-12 top-32 max-w-md text-right"
           >
             <p className="text-[11px] leading-relaxed tracking-wide font-light">
-              I CREATE MEANINGFUL DIGITAL EXPERIENCES THROUGH AN APPROACH ROOTED IN LOGIC AND INTUITION, INTEGRATING
-              FOUR KEY AREAS TO CREATE NEW VALUE.
+              I CREATE INTELLIGENT, INTERACTIVE, AND DECENTRALIZED DIGITAL EXPERIENCES COMBINING AI REASONING,
+              BLOCKCHAIN TECHNOLOGY, AND MODERN WEB FRAMEWORKS TO BUILD PRODUCTS THAT EMPOWER CREATIVITY.
             </p>
           </motion.div>
 
@@ -284,12 +208,11 @@ function HeroSection({ onMenuClick }: { onMenuClick: () => void }) {
             className="max-w-4xl mt-32"
           >
             <h1 className="text-7xl leading-tight font-light tracking-tight">
-              Synthesize Approaches,
+              Building <em className="font-serif not-italic">Intelligent</em> Solutions,
               <br />
-              Refined <em className="font-serif not-italic">Digital</em> Experiences.
+              Crafting <em className="font-serif not-italic">Decentralized</em> Experiences.
               <br />
-              <em className="font-serif not-italic">For</em> Vision <em className="font-serif not-italic">and</em>{" "}
-              Brand.
+              <em className="font-serif not-italic">Empowering</em> the Future <em className="font-serif not-italic">of</em> Tech.
             </h1>
           </motion.div>
         </div>
@@ -356,19 +279,21 @@ function ProfileSection() {
         >
           <p className="text-4xl leading-relaxed font-light">
             {"I'm "}
-            <em className="font-serif not-italic">Kaito Note</em>.
+            <em className="font-serif not-italic">Panacea</em>.
             <br />
-            Motion Designer and <em className="font-serif not-italic">Web</em> Developer.
-            <br />I work in <em className="font-serif not-italic">Video</em> production and web
+            AI Engineer and <em className="font-serif not-italic">Web</em> Developer.
+            <br />I build <em className="font-serif not-italic">intelligent</em> systems and
             <br />
-            development, based in Osaka, Japan,
+            decentralized applications, based in
             <br />
-            with motion design at the core.
-            <br />I pursuing create experiences that ignite
+            Ho Chi Minh City, Vietnam,
             <br />
-            impact and emotion,
+            with AI and blockchain at the core.
+            <br />I create experiences that empower
             <br />
-            the <em className="font-serif not-italic">blue flame</em> is the heart.
+            creativity and innovation,
+            <br />
+            transforming how we <em className="font-serif not-italic">connect</em> with technology.
           </p>
         </motion.div>
       </div>
@@ -423,11 +348,11 @@ function ExpressionSection() {
           className="text-center mb-32"
         >
           <h2 className="text-7xl leading-tight font-light">
-            <em className="font-serif not-italic">Rebuilding</em> Expression.
+            <em className="font-serif not-italic">Innovating</em> with Intelligence.
             <br />
-            Continuously <em className="font-serif not-italic">Pursuing</em>
+            Continuously <em className="font-serif not-italic">Building</em>
             <br />
-            Unique <em className="font-serif not-italic">and</em> Refined Creations.
+            Smart <em className="font-serif not-italic">and</em> Decentralized Solutions.
           </h2>
         </motion.div>
 
@@ -511,13 +436,13 @@ function ServiceSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-6xl leading-tight font-light mb-12">
-            I synthesize <em className="font-serif not-italic">four</em> key areas
+            I combine <em className="font-serif not-italic">four</em> key areas
             <br />
-            with <em className="font-serif not-italic">both</em> logical and intuitive approaches,
+            with <em className="font-serif not-italic">AI</em> and blockchain expertise,
             <br />
-            shaping visions and brands
+            building intelligent systems
             <br />
-            to deliver new value through <em className="font-serif not-italic">digital experiences</em>.
+            that deliver transformative <em className="font-serif not-italic">digital experiences</em>.
           </h2>
         </motion.div>
 
@@ -529,11 +454,11 @@ function ServiceSection() {
           className="mt-16 text-sm leading-relaxed max-w-xl ml-auto text-right"
         >
           <p className="font-light">
-            論理・感覚の両面からのアプローチと4つの主軸な領域を
+            From AI-powered applications to decentralized platforms,
             <br />
-            組み合わせ、ビジョンやブランドを形にすることで
+            I create solutions that merge cutting-edge technology
             <br />
-            デジタル体験を通じた新しい価値を生み出します。
+            with intuitive design to empower the future of digital innovation.
           </p>
         </motion.div>
       </div>
@@ -547,7 +472,7 @@ function ServiceSection() {
       >
         01
         <br />
-        Motion Design
+        AI/ML Solutions
       </motion.div>
     </section>
   )
@@ -576,7 +501,7 @@ function MotionDesignSection() {
           className="mb-8"
         >
           <p className="text-xs tracking-wider font-light mb-16">01</p>
-          <h3 className="text-6xl font-light mb-8">Motion Design</h3>
+          <h3 className="text-6xl font-light mb-8">AI/ML Solutions</h3>
         </motion.div>
 
         <motion.div
@@ -586,13 +511,13 @@ function MotionDesignSection() {
           viewport={{ once: true }}
         >
           <p className="text-lg leading-relaxed font-light">
-            I bring ideas to life through dynamic motion design,
+            I design and build intelligent systems with LLMs,
             <br />
-            creating engaging animations that capture attention
+            RAG pipelines, and self-refinement methods for smarter,
             <br />
-            and communicate messages effectively across
+            context-aware user experiences across
             <br />
-            various digital platforms.
+            various AI-powered applications.
           </p>
         </motion.div>
       </div>
@@ -641,7 +566,7 @@ function WebDevelopmentSection() {
           className="mb-8"
         >
           <p className="text-xs tracking-wider font-light mb-16">02</p>
-          <h3 className="text-6xl font-light mb-8">Web Development</h3>
+          <h3 className="text-6xl font-light mb-8">Full-Stack Web Development</h3>
         </motion.div>
 
         <motion.div
@@ -651,11 +576,13 @@ function WebDevelopmentSection() {
           viewport={{ once: true }}
         >
           <p className="text-lg leading-relaxed font-light">
-            I provide usability-focused development across various areas,
+            I develop modern, responsive web applications
             <br />
-            including markup, styling, CMS development, motion design, and UI/UX optimization.
-            <br />I also prioritize performance improvements and accessibility to deliver a smooth and intuitive web
-            experience.
+            using React, Next.js, and Node.js with integrated APIs
+            <br />
+            and cloud databases, focusing on performance,
+            <br />
+            scalability, and exceptional user experiences.
           </p>
         </motion.div>
       </div>
@@ -686,7 +613,7 @@ function VisualDesignSection() {
           className="mb-8"
         >
           <p className="text-xs tracking-wider font-light mb-16">03</p>
-          <h3 className="text-6xl font-light mb-8">Visual Design</h3>
+          <h3 className="text-6xl font-light mb-8">Web3 & Blockchain</h3>
         </motion.div>
 
         <motion.div
@@ -696,10 +623,13 @@ function VisualDesignSection() {
           viewport={{ once: true }}
         >
           <p className="text-lg leading-relaxed font-light">
-            {"I create designs that visually embody a brand's vision and concept,"}
+            I create decentralized platforms, NFT marketplaces,
             <br />
-            especially in video content. By unifying elements such as layout, typography, color palettes, and icons,
-            <br />I build visuals that are both engaging and memorable for users.
+            and AI-driven blockchain experiences on Solana and Ethereum.
+            <br />
+            Building secure smart contracts and seamless wallet integrations
+            <br />
+            for the next generation of Web3 applications.
           </p>
         </motion.div>
       </div>
@@ -730,7 +660,7 @@ function ArtDirectionSection() {
           className="mb-8"
         >
           <p className="text-xs tracking-wider font-light mb-16">04</p>
-          <h3 className="text-6xl font-light mb-8">Art Direction</h3>
+          <h3 className="text-6xl font-light mb-8">Data Visualization</h3>
         </motion.div>
 
         <motion.div
@@ -740,10 +670,13 @@ function ArtDirectionSection() {
           viewport={{ once: true }}
         >
           <p className="text-lg leading-relaxed font-light">
-            I lead the creative strategy for projects,
+            I build interactive data dashboards, generative media tools,
             <br />
-            {"ensuring the brand's vision and values are reflected in the design. From concept to final output,"}
-            <br />I manage each stage to deliver cohesive and impactful creative work.
+            and immersive 3D user interfaces for digital storytelling.
+            <br />
+            Transforming complex data into engaging visual narratives
+            <br />
+            that drive insights and decision-making.
           </p>
         </motion.div>
       </div>
@@ -799,17 +732,17 @@ function WorksSection() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="aspect-video bg-gradient-to-br from-red-500 to-white rounded-lg overflow-hidden mb-6 relative shadow-2xl"
+              className="aspect-video bg-gradient-to-br from-purple-600 to-blue-500 rounded-lg overflow-hidden mb-6 relative shadow-2xl"
             >
               <img
                 src="/placeholder.svg?height=600&width=800"
-                alt="SAIZEN+ project"
+                alt="VOID project"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </motion.div>
-            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">SAIZEN+</h4>
-            <p className="text-sm text-white/60 tracking-wider">MOVIE,DESIGN</p>
+            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">VOID</h4>
+            <p className="text-sm text-white/60 tracking-wider">AI, WEB3</p>
           </motion.div>
 
           <motion.div
@@ -822,17 +755,17 @@ function WorksSection() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="aspect-video bg-white rounded-lg overflow-hidden mb-6 flex items-center justify-center shadow-2xl relative"
+              className="aspect-video bg-gradient-to-br from-cyan-400 to-teal-600 rounded-lg overflow-hidden mb-6 flex items-center justify-center shadow-2xl relative"
             >
               <img
                 src="/placeholder.svg?height=600&width=800"
-                alt="reynato.tokyo project"
+                alt="N.OVA project"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
             </motion.div>
-            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">reynato.tokyo</h4>
-            <p className="text-sm text-white/60 tracking-wider">WEB</p>
+            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">N.OVA</h4>
+            <p className="text-sm text-white/60 tracking-wider">AI, WEB3, IDENTITY</p>
           </motion.div>
 
           <motion.div
@@ -845,17 +778,17 @@ function WorksSection() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="aspect-video bg-gradient-to-br from-purple-600 to-blue-500 rounded-lg overflow-hidden mb-6 relative shadow-2xl"
+              className="aspect-video bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg overflow-hidden mb-6 relative shadow-2xl"
             >
               <img
                 src="/placeholder.svg?height=600&width=800"
-                alt="Motion project"
+                alt="Genie project"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </motion.div>
-            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">Motion Reel 2024</h4>
-            <p className="text-sm text-white/60 tracking-wider">MOTION,VIDEO</p>
+            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">Genie</h4>
+            <p className="text-sm text-white/60 tracking-wider">AI, HEALTHTECH</p>
           </motion.div>
 
           <motion.div
@@ -868,17 +801,17 @@ function WorksSection() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="aspect-video bg-gradient-to-br from-cyan-400 to-teal-600 rounded-lg overflow-hidden mb-6 relative shadow-2xl"
+              className="aspect-video bg-gradient-to-br from-orange-500 to-red-600 rounded-lg overflow-hidden mb-6 relative shadow-2xl"
             >
               <img
                 src="/placeholder.svg?height=600&width=800"
-                alt="Web development project"
+                alt="Flipside project"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </motion.div>
-            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">Brand Platform</h4>
-            <p className="text-sm text-white/60 tracking-wider">WEB,DESIGN</p>
+            <h4 className="text-3xl font-light mb-2 group-hover:opacity-60 transition-opacity">Flipside</h4>
+            <p className="text-sm text-white/60 tracking-wider">BLOCKCHAIN, ANALYTICS</p>
           </motion.div>
         </div>
       </div>
@@ -951,7 +884,7 @@ function ContactSection() {
             <h3 className="text-3xl font-light mb-8">Information</h3>
           </div>
           <div className="text-sm leading-relaxed font-light">
-            <p>現在、2025年11月以降における映像制作の新規ご依頼を受付中です。</p>
+            <p>Currently available for new projects and collaborations. Open to AI/ML development, Web3 applications, and full-stack solutions.</p>
           </div>
         </motion.div>
 
@@ -967,7 +900,7 @@ function ContactSection() {
             <h3 className="text-3xl font-light mb-8">Collaboration</h3>
           </div>
           <div className="text-sm leading-relaxed font-light">
-            <p>Slack / Discord / Zoom / Google Meet / Backlog / Notion</p>
+            <p>Slack / Discord / Zoom / GitHub</p>
           </div>
         </motion.div>
 
@@ -983,8 +916,7 @@ function ContactSection() {
             <h3 className="text-3xl font-light mb-8">Mail</h3>
           </div>
           <div className="text-sm leading-relaxed font-light space-y-2">
-            <p>Main: id@kaitonote.com</p>
-            <p>Sub: id.kaitonote@gmail.com</p>
+            <p>ng.t.thien01@gmail.com</p>
           </div>
         </motion.div>
 
@@ -999,8 +931,10 @@ function ContactSection() {
           <div>
             <h3 className="text-3xl font-light mb-8">Achievements</h3>
           </div>
-          <div className="text-sm leading-relaxed font-light">
-            <p className="text-white/40">非公開実績の閲覧をご希望の方はお気軽にお問い合わせください。</p>
+          <div className="text-sm leading-relaxed font-light space-y-2">
+            <p>🏆 Best AI App – Solana Swinburne Hackathon 2025</p>
+            <p>🎯 Solana Colosseum Breakout Hackathon 2025</p>
+            <p>💡 Best Performance – Computing Technology Innovative Project</p>
           </div>
         </motion.div>
 
@@ -1016,24 +950,21 @@ function ContactSection() {
             <h3 className="text-3xl font-light mb-8">SNS</h3>
           </div>
           <div className="text-sm leading-relaxed font-light space-y-3">
-            <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-              X <span className="text-xs">↗</span>
-            </div>
-            <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-              Instagram <span className="text-xs">↗</span>
-            </div>
-            <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-              Vimeo <span className="text-xs">↗</span>
-            </div>
-            <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-              YouTube <span className="text-xs">↗</span>
-            </div>
-            <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
-              Behance <span className="text-xs">↗</span>
-            </div>
-            <div className="flex items-center gap-2 hover:opacity-60 transition-opacity">
+            <a href="https://github.com/Panacea2005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity">
               GitHub <span className="text-xs">↗</span>
-            </div>
+            </a>
+            <a href="https://www.linkedin.com/in/thi%C3%AAn-nguy%E1%BB%85n-l%C3%AA-tr%C6%B0%E1%BB%9Dng-65773b29b/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity">
+              LinkedIn <span className="text-xs">↗</span>
+            </a>
+            <a href="https://x.com/panacea___005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity">
+              X <span className="text-xs">↗</span>
+            </a>
+            <a href="https://www.youtube.com/@Panacea2005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity">
+              YouTube <span className="text-xs">↗</span>
+            </a>
+            <a href="https://www.instagram.com/__tthien/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity">
+              Instagram <span className="text-xs">↗</span>
+            </a>
           </div>
         </motion.div>
 

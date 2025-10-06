@@ -3,100 +3,24 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { Header } from "@/components/header"
+import { MenuOverlay } from "@/components/menu-overlay"
+import { Footer } from "@/components/footer"
 
 const projects = [
-  { id: 1, title: "KAITO NOTE", category: "WEB", span: "col-span-1 row-span-1" },
-  { id: 2, title: "SAIZEN+", category: "MOVIE,DESIGN", span: "col-span-2 row-span-1" },
-  { id: 3, title: "時間 (Time)", category: "DESIGN", span: "col-span-1 row-span-1" },
-  { id: 4, title: "ROKU KYOTO", category: "WEB", span: "col-span-2 row-span-1" },
-  { id: 5, title: "頑張らない", category: "DESIGN", span: "col-span-1 row-span-1" },
-  { id: 6, title: "WELCOME TO OUR WEDDING", category: "WEB,DESIGN", span: "col-span-1 row-span-1" },
-  { id: 7, title: "VANSCH", category: "MOVIE", span: "col-span-1 row-span-1" },
-  { id: 8, title: "interg", category: "WEB", span: "col-span-1 row-span-1" },
-  { id: 9, title: "SHIROISHI", category: "WEB", span: "col-span-2 row-span-1" },
-  { id: 10, title: "Typography Exploration", category: "DESIGN", span: "col-span-1 row-span-1" },
-  { id: 11, title: "Abstract Composition", category: "DESIGN", span: "col-span-1 row-span-1" },
-  { id: 12, title: "Purple Universe", category: "MOTION", span: "col-span-1 row-span-1" },
-  { id: 13, title: "Sky Dreams", category: "MOVIE", span: "col-span-1 row-span-1" },
-  { id: 14, title: "Circular Vision", category: "DESIGN", span: "col-span-1 row-span-1" },
-  { id: 15, title: "Geometric Balance", category: "DESIGN", span: "col-span-1 row-span-1" },
+  { id: 1, title: "VOID", category: "AI,WEB3", span: "col-span-2 row-span-1" },
+  { id: 2, title: "N.OVA", category: "AI,WEB3", span: "col-span-1 row-span-1" },
+  { id: 3, title: "Genie", category: "AI,HEALTHTECH", span: "col-span-1 row-span-1" },
+  { id: 4, title: "Flipside", category: "BLOCKCHAIN,ANALYTICS", span: "col-span-2 row-span-1" },
+  { id: 5, title: "AI Music Generator", category: "AI", span: "col-span-1 row-span-1" },
+  { id: 6, title: "NFT Marketplace", category: "WEB3", span: "col-span-1 row-span-1" },
+  { id: 7, title: "RAG Pipeline System", category: "AI", span: "col-span-1 row-span-1" },
+  { id: 8, title: "DeFi Dashboard", category: "WEB3,ANALYTICS", span: "col-span-1 row-span-1" },
+  { id: 9, title: "AI Chatbot Platform", category: "AI", span: "col-span-2 row-span-1" },
+  { id: 10, title: "Smart Contract Suite", category: "BLOCKCHAIN", span: "col-span-1 row-span-1" },
+  { id: 11, title: "Data Visualization Tool", category: "WEB,ANALYTICS", span: "col-span-1 row-span-1" },
+  { id: 12, title: "AI Image Generator", category: "AI", span: "col-span-1 row-span-1" },
 ]
-
-function MenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  if (!isOpen) return null
-
-  return (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 z-50 flex"
-    >
-      <div onClick={onClose} className="w-1/2 bg-transparent" />
-      <div className="w-1/2 bg-gradient-to-br from-blue-600/90 via-purple-600/90 to-blue-800/90 backdrop-blur-xl p-16 flex flex-col justify-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-cyan-400/40 to-blue-600/40 blur-3xl" />
-        </div>
-
-        <button
-          onClick={onClose}
-          className="absolute top-8 right-12 text-sm tracking-wider font-light text-white hover:opacity-60 transition-opacity"
-        >
-          [CLOSE]
-        </button>
-
-        <nav className="relative z-10 space-y-8 mb-16">
-          <Link
-            href="/"
-            className="block text-6xl font-light text-white hover:opacity-60 transition-opacity tracking-wide"
-          >
-            INDEX
-          </Link>
-          <Link
-            href="/profile"
-            className="block text-6xl font-light text-white hover:opacity-60 transition-opacity tracking-wide"
-          >
-            PROFILE
-          </Link>
-          <Link
-            href="/works"
-            className="block text-6xl font-light text-white hover:opacity-60 transition-opacity tracking-wide"
-          >
-            WORKS
-          </Link>
-          <Link
-            href="/contact"
-            className="block text-6xl font-light text-white hover:opacity-60 transition-opacity tracking-wide"
-          >
-            CONTACT
-          </Link>
-        </nav>
-
-        <div className="relative z-10 grid grid-cols-2 gap-x-16 gap-y-3 text-white">
-          <Link href="#" className="text-sm hover:opacity-60 transition-opacity flex items-center gap-2">
-            X ↗
-          </Link>
-          <Link href="#" className="text-sm hover:opacity-60 transition-opacity flex items-center gap-2">
-            Instagram ↗
-          </Link>
-          <Link href="#" className="text-sm hover:opacity-60 transition-opacity flex items-center gap-2">
-            Vimeo ↗
-          </Link>
-          <Link href="#" className="text-sm hover:opacity-60 transition-opacity flex items-center gap-2">
-            YouTube ↗
-          </Link>
-          <Link href="#" className="text-sm hover:opacity-60 transition-opacity flex items-center gap-2">
-            Behance ↗
-          </Link>
-          <Link href="#" className="text-sm hover:opacity-60 transition-opacity flex items-center gap-2">
-            GitHub ↗
-          </Link>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
 
 export default function WorksPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -149,18 +73,7 @@ export default function WorksPage() {
           BACK TO TOP
         </button>
 
-        {/* Header */}
-        <header className="relative z-20 flex items-center justify-between px-12 py-8">
-          <Link href="/" className="text-sm tracking-wider font-light hover:opacity-60 transition-opacity">
-            KAITO NOTE
-          </Link>
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            className="text-sm tracking-wider font-light hover:opacity-60 transition-opacity"
-          >
-            (MENU)
-          </button>
-        </header>
+        <Header onMenuClick={() => setIsMenuOpen(true)} />
 
         {/* Works Section */}
         <section className="relative min-h-screen py-20 overflow-hidden bg-gradient-to-b from-blue-950/20 via-black to-black">
@@ -213,7 +126,7 @@ export default function WorksPage() {
                 <div>
                   <p className="text-white/40 mb-4 italic">Category</p>
                   <div className="space-y-2">
-                    {["ALL", "MOVIE", "WEB", "DESIGN"].map((category) => (
+                    {["ALL", "AI", "WEB3", "BLOCKCHAIN", "ANALYTICS"].map((category) => (
                       <button
                         key={category}
                         onClick={() => setSelectedCategory(category)}
@@ -256,82 +169,9 @@ export default function WorksPage() {
             </div>
           </div>
         </section>
-
-        <footer className="relative border-t border-white/10 bg-gradient-to-b from-black to-blue-950/20">
-          <div className="absolute inset-0 opacity-5">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid-footer" width="100" height="100" patternUnits="userSpaceOnUse">
-                  <path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid-footer)" />
-            </svg>
-          </div>
-
-          <div className="relative z-10 px-12 py-16">
-            <div className="grid grid-cols-4 gap-12 max-w-[1600px] mx-auto">
-              <div>
-                <h3 className="text-2xl font-light mb-8">INDEX</h3>
-                <nav className="space-y-3">
-                  <Link href="/profile" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    PROFILE
-                  </Link>
-                  <Link href="/works" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    WORKS
-                  </Link>
-                  <Link href="/contact" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    CONTACT
-                  </Link>
-                </nav>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-light mb-8 italic text-white/40">ADDRESS</h3>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  34°41'38"N, 135°30'08"E
-                  <br />
-                  20.34.06
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-light mb-8 italic text-white/40">MAIL</h3>
-                <a
-                  href="mailto:id@kaitonote.com"
-                  className="block text-sm text-white/60 hover:text-white transition-colors mb-2"
-                >
-                  id@kaitonote.com
-                </a>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-light mb-8 italic text-white/40">SNS</h3>
-                <div className="space-y-2">
-                  <a href="#" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    X ↗
-                  </a>
-                  <a href="#" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    Instagram ↗
-                  </a>
-                  <a href="#" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    Vimeo ↗
-                  </a>
-                  <a href="#" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    YouTube ↗
-                  </a>
-                  <a href="#" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    Behance ↗
-                  </a>
-                  <a href="#" className="block text-sm text-white/60 hover:text-white transition-colors">
-                    GitHub ↗
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
+
+      <Footer />
     </>
   )
 }

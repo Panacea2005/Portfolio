@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { Header } from "@/components/header"
 import { MenuOverlay } from "@/components/menu-overlay"
+import { Footer } from "@/components/footer"
 
 export default function ProfilePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -54,18 +56,7 @@ export default function ProfilePage() {
           BACK TO TOP
         </button>
 
-        {/* Header */}
-        <header className="relative z-20 flex items-center justify-between px-12 py-8">
-          <Link href="/" className="text-sm tracking-wider font-light hover:opacity-60 transition-opacity">
-            KAITO NOTE
-          </Link>
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            className="text-sm tracking-wider font-light hover:opacity-60 transition-opacity"
-          >
-            (MENU)
-          </button>
-        </header>
+        <Header onMenuClick={() => setIsMenuOpen(true)} />
 
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center overflow-hidden py-32">
@@ -105,11 +96,11 @@ export default function ProfilePage() {
               className="space-y-12"
             >
               <h1 className="text-6xl leading-tight font-light text-balance">
-                <em className="font-serif not-italic">Unforgettable</em> impact and emotion
+                <em className="font-serif not-italic">Intelligent</em> systems and
                 <br />
-                Touching in the <em className="font-serif not-italic">heart</em>,
+                decentralized <em className="font-serif not-italic">solutions</em>,
                 <br />
-                Like a <em className="font-serif not-italic">blue flame</em> igniting.
+                Transforming the <em className="font-serif not-italic">future</em> of technology.
               </h1>
 
               <Link
@@ -145,16 +136,11 @@ export default function ProfilePage() {
             >
               <div className="space-y-8">
                 <p className="text-lg leading-relaxed font-light">
-                  Kaito Note, Motion Designer and Web Developer. Born in 1997. I began creating videos after discovering
-                  motion design while working in web production following university. Now based in Osaka, I specialize
-                  in motion design, handling both video production and web development. I work on various digital
-                  creative projects, including corporate promotions, branding, campaigns, ads, web content, and music
-                  videos, focusing on maximizing the value of brands through unique, sophisticated visuals.
+                  Panacea, AI Engineer and Web Developer. Born in 2005. I'm a Computer Science student at Swinburne University of Technology majoring in Artificial Intelligence, with hands-on experience across AI systems, Web3 platforms, and full-stack development. My journey began with a deep curiosity for how intelligent systems can shape user experiences — leading me to build projects that merge AI with blockchain, data visualization, and creative media.
                 </p>
 
                 <p className="text-sm leading-relaxed font-light text-white/80">
-                  野手
-                  顕斗。モーションデザイナー／Webデベロッパー。1997年生まれ。大学卒業後、Web制作に従事する中でモーションデザインの領域に興味を持ち、映像制作を始める。現在、大阪を拠点にモーションデザインを軸とした映像制作やWeb開発を手がける。企業プロダクトのプロモーション、ブランディング、キャンペーン、広告、Web、MVなど、幅広いデジタルクリエイティブに携わり、ビジョンやブランドの価値を最大化するユニークで洗練されたビジュアル表現を追求する。
+                  I've developed and led several innovative applications, including VOID, an award-winning AI-powered NFT platform (Best AI App – Solana Swinburne Hackathon 2025), and N.OVA, an AI-native Web3 identity platform showcased at the Solana Colosseum Breakout Hackathon 2025. My recent work explores agentic AI systems and Retrieval-Augmented Generation (RAG) pipelines for mental health and personal identity applications.
                 </p>
               </div>
 
@@ -165,7 +151,7 @@ export default function ProfilePage() {
                 viewport={{ once: true }}
                 className="pt-16"
               >
-                <h2 className="text-[120px] leading-none font-light text-white/10">gner Web Devel</h2>
+                <h2 className="text-[120px] leading-none font-light text-white/10">AI Engineer Web Dev</h2>
               </motion.div>
             </motion.div>
           </div>
@@ -197,8 +183,7 @@ export default function ProfilePage() {
               </div>
               <div className="col-span-2 text-lg leading-relaxed font-light">
                 <p>
-                  HTML / CSS / Sass / BEM / FLOCSS / Tailwind CSS / JavaScript / Vue.js / PHP / WordPress / MicroCMS / /
-                  Vite / Astro / Nuxt.js
+                  Python / JavaScript / TypeScript / Kotlin / C++ / C# / PHP / SQL / React.js / Next.js / Node.js / Tailwind CSS / LangChain / PyTorch / Hugging Face / Solana / Ethereum / Web3.js / Solidity
                 </p>
               </div>
             </motion.div>
@@ -215,7 +200,7 @@ export default function ProfilePage() {
                 <h3 className="text-4xl font-light mb-8">Tools</h3>
               </div>
               <div className="col-span-2 text-lg leading-relaxed font-light">
-                <p>Adobe Illustrator / Adobe Photoshop / Adobe Premiere Pro / Adobe After Effects / Adobe XD / Figma</p>
+                <p>Git / GitHub Actions / Docker / VS Code / Supabase / Pinata / IPFS / GroqCloud / Replicate / D3.js / Three.js</p>
               </div>
             </motion.div>
 
@@ -231,123 +216,17 @@ export default function ProfilePage() {
                 <h3 className="text-4xl font-light mb-8">Awards</h3>
               </div>
               <div className="col-span-2 text-lg leading-relaxed font-light space-y-2">
-                <p>Awwwards | Honorable Mentions × 1</p>
-                <p>CSS Design Awards | Website Of The Day × 1</p>
-                <p>CSS Design Awards | Best UI Design × 1</p>
-                <p>CSS Design Awards | Best UX Design × 1</p>
-                <p>CSS Design Awards | Best Innovation × 1</p>
-                <p>FWA | FWA Of The Day × 1</p>
+                <p>🏆 Best AI App – Solana Swinburne Hackathon 2025 (VOID)</p>
+                <p>🎯 Participant – Solana Colosseum Breakout Hackathon 2025 (N.OVA)</p>
+                <p>💡 Best Performance – Computing Technology Innovative Project (Flipside)</p>
+                <p>🌍 Top Global Participant – Colosseum Breakout Hackathon 2025</p>
               </div>
             </motion.div>
           </div>
         </section>
-
-        {/* Footer */}
-        <FooterSection />
       </div>
+
+      <Footer />
     </>
-  )
-}
-
-function FooterSection() {
-  return (
-    <section className="relative min-h-screen bg-white text-black py-32">
-      <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid-footer" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid-footer)" />
-        </svg>
-      </div>
-
-      <div className="absolute inset-0 pointer-events-none opacity-5">
-        <div className="absolute left-[15%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-black" />
-        <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-black" />
-        <div className="absolute right-[15%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-black" />
-      </div>
-
-      <div className="relative z-10 px-12 flex gap-24">
-        <div className="w-1/3">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <h3 className="text-4xl font-light mb-12">INDEX</h3>
-            <nav className="space-y-6 text-2xl font-light">
-              <Link href="/profile" className="block hover:opacity-60 transition-opacity">
-                PROFILE
-              </Link>
-              <Link href="/works" className="block hover:opacity-60 transition-opacity">
-                WORKS
-              </Link>
-              <Link href="/contact" className="block hover:opacity-60 transition-opacity">
-                CONTACT
-              </Link>
-            </nav>
-          </motion.div>
-        </div>
-
-        <div className="w-2/3 flex flex-col gap-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-right"
-          >
-            <p className="text-xs tracking-wider mb-4 italic">ADDRESS</p>
-            <p className="text-sm font-light mb-1">{"34°41'38\"N, 135°30'08\"E"}</p>
-            <p className="text-sm font-light">20.34.06</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-right"
-          >
-            <p className="text-xs tracking-wider mb-4 italic">MAIL</p>
-            <p className="text-sm font-light">id@kaitonote.com</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-right"
-          >
-            <p className="text-xs tracking-wider mb-4 italic">SNS</p>
-            <div className="space-y-2 text-sm font-light">
-              <div className="flex items-center justify-end gap-2 hover:opacity-60 transition-opacity">
-                X <span className="text-xs">↗</span>
-              </div>
-              <div className="flex items-center justify-end gap-2 hover:opacity-60 transition-opacity">
-                Instagram <span className="text-xs">↗</span>
-              </div>
-              <div className="flex items-center justify-end gap-2 hover:opacity-60 transition-opacity">
-                Vimeo <span className="text-xs">↗</span>
-              </div>
-              <div className="flex items-center justify-end gap-2 hover:opacity-60 transition-opacity">
-                YouTube <span className="text-xs">↗</span>
-              </div>
-              <div className="flex items-center justify-end gap-2 hover:opacity-60 transition-opacity">
-                Behance <span className="text-xs">↗</span>
-              </div>
-              <div className="flex items-center justify-end gap-2 hover:opacity-60 transition-opacity">
-                GitHub <span className="text-xs">↗</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
   )
 }

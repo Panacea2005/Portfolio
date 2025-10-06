@@ -22,9 +22,19 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Kaito Note",
-  description: "Synthesize Approaches, Refined Digital Experiences",
+  title: "Panacea - AI Engineer & Web Developer",
+  description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge technology and innovative design",
   generator: "v0.app",
+  keywords: ["AI Engineer", "Web Developer", "Machine Learning", "Full Stack Developer", "Artificial Intelligence", "Portfolio", "Panacea"],
+  authors: [{ name: "Panacea" }],
+  icons: {
+    icon: '/favicon.png',
+  },
+  openGraph: {
+    title: "Panacea - AI Engineer & Web Developer",
+    description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge technology and innovative design",
+    type: "website",
+  },
 }
 
 export default function RootLayout({

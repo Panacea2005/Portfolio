@@ -1,0 +1,35 @@
+"use client"
+
+import { motion } from "framer-motion"
+import Link from "next/link"
+
+interface HeaderProps {
+  onMenuClick: () => void
+}
+
+export function Header({ onMenuClick }: HeaderProps) {
+  return (
+    <header className="relative z-20 flex items-center justify-between px-12 py-8">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-sm tracking-wider font-light"
+      >
+        <Link href="/" className="hover:opacity-60 transition-opacity">
+          Panacea
+        </Link>
+      </motion.div>
+      <motion.button
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        onClick={onMenuClick}
+        className="text-sm tracking-wider font-light hover:opacity-60 transition-opacity"
+      >
+        (MENU)
+      </motion.button>
+    </header>
+  )
+}
+

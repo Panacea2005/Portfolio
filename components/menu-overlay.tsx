@@ -30,7 +30,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
 
             {/* Header */}
             <header className="relative z-20 flex items-center justify-between px-12 py-8">
-              <div className="text-sm tracking-wider font-light text-white">KAITO NOTE</div>
+              <div className="text-sm tracking-wider font-light text-white">Panacea</div>
               <button
                 onClick={onClose}
                 className="text-sm tracking-wider font-light text-white hover:opacity-60 transition-opacity"
@@ -85,24 +85,21 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                   transition={{ delay: 0.5, duration: 0.8 }}
                   className="grid grid-cols-2 gap-x-32 gap-y-4 text-lg font-light text-white"
                 >
-                  <div className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
-                    X <span className="text-sm">↗</span>
-                  </div>
-                  <div className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
-                    Instagram <span className="text-sm">↗</span>
-                  </div>
-                  <div className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
-                    Vimeo <span className="text-sm">↗</span>
-                  </div>
-                  <div className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
-                    YouTube <span className="text-sm">↗</span>
-                  </div>
-                  <div className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
-                    Behance <span className="text-sm">↗</span>
-                  </div>
-                  <div className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
+                  <a href="https://github.com/Panacea2005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
                     GitHub <span className="text-sm">↗</span>
-                  </div>
+                  </a>
+                  <a href="https://www.linkedin.com/in/thi%C3%AAn-nguy%E1%BB%85n-l%C3%AA-tr%C6%B0%E1%BB%9Dng-65773b29b/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
+                    LinkedIn <span className="text-sm">↗</span>
+                  </a>
+                  <a href="https://x.com/panacea___005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
+                    X <span className="text-sm">↗</span>
+                  </a>
+                  <a href="https://www.youtube.com/@Panacea2005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
+                    YouTube <span className="text-sm">↗</span>
+                  </a>
+                  <a href="https://www.instagram.com/__tthien/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity cursor-pointer">
+                    Instagram <span className="text-sm">↗</span>
+                  </a>
                 </motion.div>
               </div>
             </div>
