@@ -1,6 +1,8 @@
 {
-  "name": "my-v0-project",
-  "version": "0.1.0",
+  "name": "panacea",
+  "version": "1.0.0",
+  "description": "Panacea - AI Engineer & Web Developer Portfolio",
+  "author": "Panacea (Thiên Nguyễn Lê Trương)",
   "private": true,
   "scripts": {
     "build": "next build",

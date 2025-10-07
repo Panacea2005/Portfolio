@@ -6,6 +6,7 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+import StructuredData from "@/components/structured-data"
 
 import { Playfair_Display, Geist as V0_Font_Geist, Geist_Mono as V0_Font_Geist_Mono, Source_Serif_4 as V0_Font_Source_Serif_4 } from 'next/font/google'
 
@@ -22,19 +23,82 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Panacea - AI Engineer & Web Developer",
-  description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge technology and innovative design",
-  generator: "v0.app",
-  keywords: ["AI Engineer", "Web Developer", "Machine Learning", "Full Stack Developer", "Artificial Intelligence", "Portfolio", "Panacea"],
-  authors: [{ name: "Panacea" }],
+  metadataBase: new URL('https://panacea-dev.vercel.app'),
+  title: {
+    default: "Panacea - AI Engineer & Web Developer",
+    template: "%s | Panacea"
+  },
+  description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge AI, blockchain technology, and modern web development. Specializing in AI/ML, Web3, and full-stack applications.",
+  applicationName: "Panacea Portfolio",
+  authors: [
+    { name: "Panacea", url: "https://panacea-dev.vercel.app" },
+    { name: "Nguyễn Lê Trường Thiên" }
+  ],
+  creator: "Panacea",
+  publisher: "Panacea",
+  keywords: [
+    "AI Engineer",
+    "Web Developer",
+    "Machine Learning",
+    "Full Stack Developer",
+    "Artificial Intelligence",
+    "Web3",
+    "Blockchain",
+    "Solana",
+    "Ethereum",
+    "Next.js",
+    "React",
+    "Python",
+    "Portfolio",
+    "Panacea",
+    "RAG Pipeline",
+    "LLM",
+    "Smart Contracts",
+    "DeFi",
+    "NFT",
+    "Data Visualization",
+    "Ho Chi Minh City",
+    "Vietnam"
+  ],
   icons: {
     icon: '/favicon.png',
   },
   openGraph: {
-    title: "Panacea - AI Engineer & Web Developer",
-    description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge technology and innovative design",
     type: "website",
+    locale: "en_US",
+    url: "https://panacea-dev.vercel.app",
+    siteName: "Panacea Portfolio",
+    title: "Panacea - AI Engineer & Web Developer",
+    description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge AI, blockchain technology, and modern web development. Specializing in AI/ML, Web3, and full-stack applications.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Panacea - AI Engineer & Web Developer",
+      }
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panacea - AI Engineer & Web Developer",
+    description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge AI, blockchain technology, and modern web development.",
+    creator: "@panacea___005",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  category: 'technology',
+  classification: 'Portfolio',
 }
 
 export default function RootLayout({
@@ -44,7 +108,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#06b6d4" />
+      </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable}`}>
+        <StructuredData />
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>
