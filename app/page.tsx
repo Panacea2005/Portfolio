@@ -11,11 +11,13 @@ import { WorksSection } from "@/components/sections/works-section"
 import { GetInTouchSection } from "@/components/sections/get-in-touch-section"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { LoadingScreen } from "@/components/loading-screen"
 
 export default function Page() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [cursorText, setCursorText] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
   const cursorRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -45,6 +47,9 @@ export default function Page() {
 
   return (
     <>
+      {/* Loading Screen */}
+      {isLoading && <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />}
+
       {/* Custom Cursor */}
       <div
         ref={cursorRef}
@@ -104,7 +109,7 @@ export default function Page() {
       {/* Hero + Profile + Expression wrapper with scoped rotating sphere */}
       <HeroProfileWithSphere>
         <div className="relative z-10 text-white">
-        <HeroSection onMenuClick={() => setIsMenuOpen(true)} />
+        <HeroSection onMenuClick={() => setIsMenuOpen(true)} isLoadingComplete={!isLoading} />
         <ProfileSection />
         <ExpressionSection />
         </div>

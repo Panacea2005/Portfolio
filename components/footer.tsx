@@ -72,52 +72,52 @@ export function Footer({ transitionProgress }: FooterProps) {
 
       {/* Vertical and horizontal lines with intersection circles - transition white to black */}
       <motion.div
-        className="absolute inset-0 pointer-events-none opacity-20 overflow-hidden"
+        className="absolute inset-0 pointer-events-none opacity-30 overflow-hidden"
         style={{ color: patternColor }}
       >
         {/* 5 vertical lines dividing layout into 10:20:20:20:20:10 proportions */}
-        <div className="absolute left-[10%] top-0 bottom-0 w-px bg-current" />
-        <div className="absolute left-[30%] top-0 bottom-0 w-px bg-current" />
-        <div className="absolute left-[50%] top-0 bottom-0 w-px bg-current" />
-        <div className="absolute left-[70%] top-0 bottom-0 w-px bg-current" />
-        <div className="absolute left-[90%] top-0 bottom-0 w-px bg-current" />
+        <div className="absolute left-[10%] top-0 bottom-0 w-[0.5px] bg-current" />
+        <div className="absolute left-[30%] top-0 bottom-0 w-[0.5px] bg-current" />
+        <div className="absolute left-[50%] top-0 bottom-0 w-[0.5px] bg-current" />
+        <div className="absolute left-[70%] top-0 bottom-0 w-[0.5px] bg-current" />
+        <div className="absolute left-[90%] top-0 bottom-0 w-[0.5px] bg-current" />
 
-        {/* Horizontal lines spaced by 40% of container width (doubled from 20%) */}
-        <div className="absolute left-0 right-0 top-1/2 h-px bg-current" />
+        {/* Horizontal lines spaced by 40% of container width - same thickness as vertical */}
+        <div className="absolute left-0 right-0 top-1/2 h-[0.5px] bg-current" />
         <div
-          className="absolute left-0 right-0 h-px bg-current"
+          className="absolute left-0 right-0 h-[0.5px] bg-current"
           style={{ top: "calc(50% - 40%)" }}
         />
         <div
-          className="absolute left-0 right-0 h-px bg-current"
+          className="absolute left-0 right-0 h-[0.5px] bg-current"
           style={{ top: "calc(50% + 40%)" }}
         />
 
-        {/* Circles at intersections with radius = 40% of container width (doubled from 20%) - only center row */}
+        {/* Circles at intersections with radius = 40% of container width - same thickness as vertical */}
         <div
-          className="absolute left-[10%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-current"
-          style={{ width: "80%", height: "80%" }}
+          className="absolute left-[10%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px]"
+          style={{ width: "80%", height: "80%", borderColor: 'currentColor' }}
         />
         <div
-          className="absolute left-[30%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-current"
-          style={{ width: "80%", height: "80%" }}
+          className="absolute left-[30%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px]"
+          style={{ width: "80%", height: "80%", borderColor: 'currentColor' }}
         />
         <div
-          className="absolute left-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-current"
-          style={{ width: "80%", height: "80%" }}
+          className="absolute left-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px]"
+          style={{ width: "80%", height: "80%", borderColor: 'currentColor' }}
         />
         <div
-          className="absolute left-[70%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-current"
-          style={{ width: "80%", height: "80%" }}
+          className="absolute left-[70%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px]"
+          style={{ width: "80%", height: "80%", borderColor: 'currentColor' }}
         />
         <div
-          className="absolute left-[90%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-current"
-          style={{ width: "80%", height: "80%" }}
+          className="absolute left-[90%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px]"
+          style={{ width: "80%", height: "80%", borderColor: 'currentColor' }}
         />
       </motion.div>
 
       <div className="relative z-10 flex gap-24 min-h-[calc(100vh-256px)]">
-        {/* Left side - INDEX list centered vertically, aligned to left vertical line */}
+        {/* Left side - INDEX list symmetrically positioned around center horizontal line */}
         <div
           className="w-[30%] flex items-center"
           style={{ paddingLeft: "10%" }}
@@ -129,8 +129,8 @@ export function Footer({ transitionProgress }: FooterProps) {
             viewport={{ once: true }}
             className="w-full"
           >
-            <ul className="flex flex-col justify-center gap-6 text-2xl font-light h-full">
-              <li>
+            <ul className="flex flex-col text-2xl font-light" style={{ gap: '3vh' }}>
+              <li style={{ transform: 'translateY(-1.5vh)' }}>
                 <Link
                   href="/"
                   className="hover:opacity-60 transition-opacity"
@@ -139,7 +139,7 @@ export function Footer({ transitionProgress }: FooterProps) {
                   INDEX
                 </Link>
               </li>
-              <li>
+              <li style={{ transform: 'translateY(-0.5vh)' }}>
                 <Link
                   href="/profile"
                   className="hover:opacity-60 transition-opacity"
@@ -148,7 +148,7 @@ export function Footer({ transitionProgress }: FooterProps) {
                   PROFILE
                 </Link>
               </li>
-              <li>
+              <li style={{ transform: 'translateY(0.5vh)' }}>
                 <Link
                   href="/works"
                   className="hover:opacity-60 transition-opacity"
@@ -157,7 +157,7 @@ export function Footer({ transitionProgress }: FooterProps) {
                   WORKS
                 </Link>
               </li>
-              <li>
+              <li style={{ transform: 'translateY(1.5vh)' }}>
                 <Link
                   href="/contact"
                   className="hover:opacity-60 transition-opacity"

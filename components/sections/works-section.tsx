@@ -62,12 +62,12 @@ export function WorksSection() {
       </AnimatePresence>
 
       {/* Vertical lines pattern - continuing from service */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 overflow-hidden z-0">
-        <div className="absolute left-[10%] top-0 bottom-0 w-px bg-white" />
-        <div className="absolute left-[30%] top-0 bottom-0 w-px bg-white" />
-        <div className="absolute left-[50%] top-0 bottom-0 w-px bg-white" />
-        <div className="absolute left-[70%] top-0 bottom-0 w-px bg-white" />
-        <div className="absolute left-[90%] top-0 bottom-0 w-px bg-white" />
+      <div className="absolute inset-0 pointer-events-none opacity-30 overflow-hidden z-0">
+        <div className="absolute left-[10%] top-0 bottom-0 w-[0.5px] bg-white" />
+        <div className="absolute left-[30%] top-0 bottom-0 w-[0.5px] bg-white" />
+        <div className="absolute left-[50%] top-0 bottom-0 w-[0.5px] bg-white" />
+        <div className="absolute left-[70%] top-0 bottom-0 w-[0.5px] bg-white" />
+        <div className="absolute left-[90%] top-0 bottom-0 w-[0.5px] bg-white" />
       </div>
       
       {/* Scrolling text background - show only when not hovering */}

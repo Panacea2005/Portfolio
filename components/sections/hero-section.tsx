@@ -5,6 +5,7 @@ import { useRef, useState, useEffect } from "react"
 
 interface HeroSectionProps {
   onMenuClick: () => void
+  isLoadingComplete?: boolean
 }
 
 // Glitch animation for labels
@@ -31,7 +32,7 @@ const glitchVariants = {
   }
 }
 
-export function HeroSection({ onMenuClick }: HeroSectionProps) {
+export function HeroSection({ onMenuClick, isLoadingComplete = true }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] })
@@ -40,13 +41,15 @@ export function HeroSection({ onMenuClick }: HeroSectionProps) {
   const filter = useMotionTemplate`blur(${blurPx}px)`
   
   // Fade out pattern when scrolling out of hero section
-  const patternOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [0.2, 0.1, 0])
+  const patternOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [0.3, 0.15, 0])
 
   useEffect(() => {
-    // Trigger loading animation
-    const timer = setTimeout(() => setIsLoaded(true), 100)
-    return () => clearTimeout(timer)
-  }, [])
+    // Trigger loading animation only after main loading is complete
+    if (isLoadingComplete) {
+      const timer = setTimeout(() => setIsLoaded(true), 100)
+      return () => clearTimeout(timer)
+    }
+  }, [isLoadingComplete])
 
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden">
@@ -57,12 +60,12 @@ export function HeroSection({ onMenuClick }: HeroSectionProps) {
         />
         
         {/* Vertical and horizontal lines with intersection circles - white pattern - FIXED with fade out and draw animation */}
-       <motion.div className="fixed inset-0 pointer-events-none overflow-hidden z-10 opacity-20" style={{ opacity: patternOpacity }}>
+       <motion.div className="fixed inset-0 pointer-events-none overflow-hidden z-10" style={{ opacity: patternOpacity }}>
          {/* 5 vertical lines - draw from top to bottom */}
          {[10, 30, 50, 70, 90].map((left, i) => (
            <motion.div
              key={`v-${left}`}
-             className="absolute top-0 bottom-0 w-px bg-white"
+             className="absolute top-0 bottom-0 w-[0.5px] bg-white"
              style={{ left: `${left}%` }}
              initial={{ scaleY: 0, originY: 0 }}
              animate={isLoaded ? { scaleY: 1 } : {}}
@@ -74,7 +77,7 @@ export function HeroSection({ onMenuClick }: HeroSectionProps) {
          {[10, 30, 50, 70, 90].map((top, i) => (
            <motion.div
              key={`h-${top}`}
-             className="absolute left-0 right-0 h-px bg-white"
+             className="absolute left-0 right-0 h-[0.5px] bg-white"
              style={{ top: `${top}%` }}
              initial={{ scaleX: 0, originX: 0 }}
              animate={isLoaded ? { scaleX: 1 } : {}}
@@ -86,7 +89,7 @@ export function HeroSection({ onMenuClick }: HeroSectionProps) {
          {[10, 30, 50, 70, 90].map((left, i) => (
            <motion.div
              key={`circle-${left}`}
-             className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white"
+             className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px] border-white"
              style={{ left: `${left}%`, width: '80vh', height: '80vh' }}
              initial={{ pathLength: 0, opacity: 0 }}
              animate={isLoaded ? { pathLength: 1, opacity: 1 } : {}}
@@ -98,7 +101,7 @@ export function HeroSection({ onMenuClick }: HeroSectionProps) {
          {[30, 50, 70].map((left, i) => (
            <motion.div
              key={`circle-top-${left}`}
-             className="absolute top-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white"
+             className="absolute top-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px] border-white"
              style={{ left: `${left}%`, width: '60vh', height: '60vh' }}
              initial={{ pathLength: 0, opacity: 0 }}
              animate={isLoaded ? { pathLength: 1, opacity: 1 } : {}}
@@ -109,7 +112,7 @@ export function HeroSection({ onMenuClick }: HeroSectionProps) {
          {[30, 50, 70].map((left, i) => (
            <motion.div
              key={`circle-bottom-${left}`}
-             className="absolute top-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white"
+             className="absolute top-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.5px] border-white"
              style={{ left: `${left}%`, width: '60vh', height: '60vh' }}
              initial={{ pathLength: 0, opacity: 0 }}
              animate={isLoaded ? { pathLength: 1, opacity: 1 } : {}}
