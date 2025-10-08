@@ -25,7 +25,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL('https://panacea-dev.vercel.app'),
   title: {
-    default: "Panacea - AI Engineer & Web Developer",
+    default: "Panacea",
     template: "%s | Panacea"
   },
   description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge AI, blockchain technology, and modern web development. Specializing in AI/ML, Web3, and full-stack applications.",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://panacea-dev.vercel.app",
     siteName: "Panacea Portfolio",
-    title: "Panacea - AI Engineer & Web Developer",
+    title: "Panacea",
     description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge AI, blockchain technology, and modern web development. Specializing in AI/ML, Web3, and full-stack applications.",
     images: [
       {
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Panacea - AI Engineer & Web Developer",
+    title: "Panacea",
     description: "AI Engineer and Web Developer creating intelligent digital solutions through cutting-edge AI, blockchain technology, and modern web development.",
     creator: "@panacea___005",
     images: ["/og-image.png"],

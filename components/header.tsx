@@ -14,10 +14,10 @@ export function Header({ onMenuClick }: HeaderProps) {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-sm tracking-wider font-light"
+        className="text-xs tracking-wider font-light"
       >
         <Link href="/" className="hover:opacity-60 transition-opacity" data-cursor-text="HOME">
-          Panacea
+          PANACEA
         </Link>
       </motion.div>
       <motion.button
@@ -25,10 +25,10 @@ export function Header({ onMenuClick }: HeaderProps) {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
         onClick={onMenuClick}
-        className="text-sm tracking-wider font-light hover:opacity-60 transition-opacity"
+        className="text-xs tracking-wider font-light hover:opacity-60 transition-opacity"
         data-cursor-text="OPEN MENU"
       >
-        (MENU)
+        [MENU]
       </motion.button>
     </header>
   )

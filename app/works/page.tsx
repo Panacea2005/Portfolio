@@ -1,68 +1,56 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import Link from "next/link"
-import { Header } from "@/components/header"
 import { MenuOverlay } from "@/components/menu-overlay"
 import { Footer } from "@/components/footer"
 import { LoadingScreen } from "@/components/loading-screen"
+import { FixedUIElements } from "@/components/fixed-ui-elements"
+import { CustomCursor } from "@/components/custom-cursor"
 
 const projects = [
-  { id: 1, title: "VOID", category: "AI,WEB3", span: "col-span-2 row-span-1" },
-  { id: 2, title: "N.OVA", category: "AI,WEB3", span: "col-span-1 row-span-1" },
-  { id: 3, title: "Genie", category: "AI,HEALTHTECH", span: "col-span-1 row-span-1" },
-  { id: 4, title: "Flipside", category: "BLOCKCHAIN,ANALYTICS", span: "col-span-2 row-span-1" },
-  { id: 5, title: "AI Music Generator", category: "AI", span: "col-span-1 row-span-1" },
-  { id: 6, title: "NFT Marketplace", category: "WEB3", span: "col-span-1 row-span-1" },
-  { id: 7, title: "RAG Pipeline System", category: "AI", span: "col-span-1 row-span-1" },
-  { id: 8, title: "DeFi Dashboard", category: "WEB3,ANALYTICS", span: "col-span-1 row-span-1" },
-  { id: 9, title: "AI Chatbot Platform", category: "AI", span: "col-span-2 row-span-1" },
-  { id: 10, title: "Smart Contract Suite", category: "BLOCKCHAIN", span: "col-span-1 row-span-1" },
-  { id: 11, title: "Data Visualization Tool", category: "WEB,ANALYTICS", span: "col-span-1 row-span-1" },
-  { id: 12, title: "AI Image Generator", category: "AI", span: "col-span-1 row-span-1" },
+  { 
+    id: 1, 
+    title: "Flipside", 
+    category: "WEB3, ANALYTICS, NFT", 
+    span: "col-span-2 row-span-1",
+    image: "/works/flipside.png"
+  },
+  { 
+    id: 2, 
+    title: "VOID", 
+    category: "AI, WEB3, GAMING", 
+    span: "col-span-1 row-span-1",
+    image: "/works/void.png"
+  },
+  { 
+    id: 3, 
+    title: "N.OVA", 
+    category: "AI, WEB3, IDENTITY", 
+    span: "col-span-1 row-span-1",
+    image: "/works/n-ova.png"
+  },
+  { 
+    id: 4, 
+    title: "Genie", 
+    category: "AI, RAG, MENTAL HEALTH", 
+    span: "col-span-2 row-span-1",
+    image: "/works/genie.png"
+  },
+  { 
+    id: 5, 
+    title: "ClimaLens", 
+    category: "AI, DATA ANALYTICS, SUSTAINABILITY", 
+    span: "col-span-2 row-span-1",
+    image: "/works/climalens.png"
+  },
 ]
 
 export default function WorksPage() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [cursorText, setCursorText] = useState<string | null>(null)
-  const [percent, setPercent] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [selectedType, setSelectedType] = useState("ALL")
   const [selectedCategory, setSelectedCategory] = useState("ALL")
-  const cursorRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      requestAnimationFrame(() => {
-        if (cursorRef.current) {
-          cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
-        }
-      })
-      
-      const target = e.target as HTMLElement
-      const hoverText = target.getAttribute('data-cursor-text')
-      if (hoverText !== cursorText) {
-        setCursorText(hoverText)
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true })
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [cursorText])
-
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const p = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0
-      setPercent(Math.round(p))
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -72,8 +60,6 @@ export default function WorksPage() {
     setIsLoading(false)
   }
 
-  const textColor = percent >= 98 ? 'text-black' : 'text-white'
-
   return (
     <>
       {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
@@ -81,60 +67,12 @@ export default function WorksPage() {
       {!isLoading && (
         <>
           {/* Custom Cursor */}
-          <div
-            ref={cursorRef}
-            className="fixed top-0 left-0 rounded-full pointer-events-none z-[999] flex items-center justify-center transition-all duration-200 ease-out"
-            style={{
-              transform: "translate(0px, 0px)",
-              width: cursorText ? '140px' : '100px',
-              height: cursorText ? '140px' : '100px',
-              marginLeft: cursorText ? '-70px' : '-50px',
-              marginTop: cursorText ? '-70px' : '-50px',
-              willChange: 'transform',
-            }}
-          >
-            <div 
-              className="absolute inset-0 rounded-full bg-zinc-700/30"
-              style={{ filter: "blur(3px)" }}
-            />
-            
-            <div className="relative z-10 flex items-center justify-center">
-              {cursorText ? (
-                <span className="text-white text-xs font-light text-center px-3 leading-tight">
-                  {cursorText}
-                </span>
-              ) : (
-                <span className="text-white/50 text-2xl font-light">+</span>
-              )}
-            </div>
-          </div>
-
-          <style jsx global>{`
-            * {
-              cursor: none !important;
-            }
-          `}</style>
+          <CustomCursor />
 
           <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
-          {/* Persistent Header */}
-          <div className="fixed top-0 left-0 right-0 z-40 text-white pt-8">
-            <Header onMenuClick={() => setIsMenuOpen(true)} />
-          </div>
-
-          {/* Back to Top */}
-          <button
-            onClick={scrollToTop}
-            className={`fixed bottom-8 right-12 z-40 text-xs tracking-wider font-light transition-colors duration-300 ${textColor}`}
-            data-cursor-text="SCROLL TO TOP"
-          >
-            BACK TO TOP
-          </button>
-
-          {/* Scroll Percentage */}
-          <div className={`fixed bottom-8 left-12 z-40 text-xs tracking-wider font-light transition-colors duration-300 ${textColor}`}>
-            SCROLL {percent}%
-          </div>
+          {/* Fixed UI Elements */}
+          <FixedUIElements onMenuClick={() => setIsMenuOpen(true)} scrollToTop={scrollToTop} />
 
           {/* Works Content with Background */}
           <WorksWithBackground selectedType={selectedType} setSelectedType={setSelectedType} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
@@ -156,6 +94,17 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
   const { scrollYProgress } = useScroll({ target: wrapperRef, offset: ["start start", "end end"] })
   
   const footerTransition = useTransform(scrollYProgress, [0.98, 1], [0, 1])
+  
+  // Extract unique categories from projects
+  const allCategories = Array.from(
+    new Set(
+      projects.flatMap(p => 
+        p.category.split(',').map(c => c.trim().toUpperCase())
+      )
+    )
+  ).sort()
+  
+  const categories = ["ALL", ...allCategories]
   
   return (
     <div ref={wrapperRef} className="relative">
@@ -223,24 +172,14 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                   <div>
                     <p className="text-white mb-4 font-serif not-italic">Type</p>
                     <div className="space-y-2">
-                      {["ALL", "PROJECT", "PLAY"].map((type) => (
-                        <button
-                          key={type}
-                          onClick={() => setSelectedType(type)}
-                          className={`block transition-colors ${
-                            selectedType === type ? "text-white" : "text-white/40 hover:text-white/60"
-                          }`}
-                        >
-                          {type}
-                        </button>
-                      ))}
+                      <div className="text-white">PROJECT</div>
                     </div>
                   </div>
 
                   <div>
                     <p className="text-white mb-4 font-serif not-italic">Category</p>
                     <div className="space-y-2">
-                      {["ALL", "AI", "WEB3", "BLOCKCHAIN", "ANALYTICS"].map((category) => (
+                      {categories.map((category) => (
                         <button
                           key={category}
                           onClick={() => setSelectedCategory(category)}
@@ -260,7 +199,12 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
               <div className="relative" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
                 {/* Projects Grid */}
                 <div className="grid grid-cols-3 auto-rows-[300px] gap-0 mb-32">
-                  {projects.map((project, index) => (
+                  {projects
+                    .filter(project => {
+                      if (selectedCategory === "ALL") return true
+                      return project.category.toUpperCase().includes(selectedCategory.toUpperCase())
+                    })
+                    .map((project, index) => (
                     <motion.div
                       key={project.id}
                       initial={{ opacity: 0, y: 40 }}
@@ -269,11 +213,11 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                       viewport={{ once: true }}
                       className={`${project.span} group relative overflow-hidden`}
                     >
-                      <div className="relative w-full h-full">
+                      <div className={`relative w-full h-full flex items-center justify-center ${project.title === "Flipside" ? "bg-white" : "bg-black"}`}>
                         <img
-                          src="/profile.jpg"
+                          src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover transition-all duration-500 group-hover:blur-md group-hover:scale-110"
+                          className="h-full w-auto min-w-full object-cover transition-all duration-500 group-hover:blur-md group-hover:scale-110"
                         />
 
                         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center text-center p-8">

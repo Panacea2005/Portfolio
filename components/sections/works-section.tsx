@@ -5,28 +5,39 @@ import { useState } from "react"
 
 const projects = [
   {
-    title: "VOID",
-    tags: "AI, WEB3",
-    gradient: "from-purple-600 to-blue-500",
+    title: "Flipside",
+    tags: "BLOCKCHAIN, ANALYTICS, DEFI",
+    gradient: "from-orange-500 to-red-600",
     align: "left", // 10% to 50%
+    image: "/flipside.png",
+  },
+  {
+    title: "VOID",
+    tags: "AI, WEB3, GAMING",
+    gradient: "from-purple-600 to-blue-500",
+    align: "right", // 50% to 90%
+    image: "/void.png",
   },
   {
     title: "N.OVA",
     tags: "AI, WEB3, IDENTITY",
     gradient: "from-cyan-400 to-teal-600",
-    align: "right", // 50% to 90%
+    align: "center", // 30% to 70%
+    image: "/n-ova.png",
   },
   {
     title: "Genie",
-    tags: "AI, HEALTHTECH",
+    tags: "AI, RAG, MENTAL HEALTH",
     gradient: "from-green-500 to-emerald-600",
-    align: "center", // 30% to 70%
+    align: "left", // 10% to 50%
+    image: "/genie.png",
   },
   {
-    title: "Flipside",
-    tags: "BLOCKCHAIN, ANALYTICS",
-    gradient: "from-orange-500 to-red-600",
-    align: "left", // 10% to 50%
+    title: "ClimaLens",
+    tags: "AI, DATA ANALYTICS, SUSTAINABILITY",
+    gradient: "from-blue-500 to-cyan-500",
+    align: "right", // 50% to 90%
+    image: "/climalens.png",
   },
 ]
 
@@ -36,9 +47,9 @@ export function WorksSection() {
 
   return (
     <section className="relative py-32 overflow-hidden">
-      {/* Blurred background image on hover */}
+      {/* Blurred background image on hover - using project image */}
       <AnimatePresence>
-        {hoveredProject && (
+        {hoveredProject && hoveredProjectData && (
           <motion.div
             key={hoveredProject}
             initial={{ opacity: 0 }}
@@ -48,13 +59,13 @@ export function WorksSection() {
             className="absolute inset-0 z-0"
           >
             <div 
-              className="absolute inset-0 bg-black"
+              className="absolute inset-0"
               style={{ 
-                backgroundImage: "url('/gradient-sphere-background.png')",
+                backgroundImage: `url('${hoveredProjectData.image}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                filter: "blur(60px)",
-                opacity: 0.4
+                filter: "blur(60px) brightness(1.2)",
+                opacity: 0.3
               }}
             />
           </motion.div>
@@ -70,52 +81,51 @@ export function WorksSection() {
         <div className="absolute left-[90%] top-0 bottom-0 w-[0.5px] bg-white" />
       </div>
       
-      {/* Scrolling text background - show only when not hovering */}
-      <AnimatePresence>
-        {!hoveredProject && (
-          <motion.div 
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none opacity-5 z-0"
-          >
+      {/* Scrolling text - centered in section works only, changes based on hover */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none z-0">
+        <AnimatePresence mode="wait">
+          {!hoveredProject ? (
             <motion.div
-              animate={{ x: [0, -2000] }}
-              transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              className="whitespace-nowrap text-[200px] font-light"
+              key="default-text"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute"
             >
-              WORKS • PORTFOLIO • PROJECTS • WORKS • PORTFOLIO • PROJECTS •
+              <motion.div
+                animate={{ x: [0, -2000] }}
+                transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                className="whitespace-nowrap text-[200px] font-light opacity-5"
+              >
+                WORKS • PORTFOLIO • PROJECTS • WORKS • PORTFOLIO • PROJECTS •
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Scrolling project title on hover - always centered in viewport */}
-      <AnimatePresence>
-        {hoveredProject && (
-          <motion.div
-            key={`title-${hoveredProject}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 flex items-center justify-center overflow-hidden pointer-events-none z-0"
-          >
+          ) : (
             <motion.div
-              animate={{ x: [1200, -1200] }}
-              transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              className="whitespace-nowrap text-[240px] font-light tracking-tight"
-              style={{
-                WebkitTextStroke: "2px rgba(255, 255, 255, 0.6)",
-                color: "transparent",
-                textShadow: "0 0 40px rgba(255, 255, 255, 0.3)",
-              }}
+              key={`title-${hoveredProject}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute"
             >
-              {hoveredProject} • {hoveredProject} • {hoveredProject} • {hoveredProject}
+              <motion.div
+                animate={{ x: [1200, -1200] }}
+                transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                className="whitespace-nowrap text-[240px] font-light tracking-tight"
+                style={{
+                  WebkitTextStroke: "2px rgba(255, 255, 255, 0.6)",
+                  color: "transparent",
+                  textShadow: "0 0 40px rgba(255, 255, 255, 0.3)",
+                }}
+              >
+                {hoveredProject} • {hoveredProject} • {hoveredProject} • {hoveredProject}
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </div>
 
       <div className="relative z-10">
         <motion.div
@@ -165,7 +175,7 @@ export function WorksSection() {
                     className="relative w-full aspect-[16/9] overflow-hidden shadow-2xl bg-black"
                   >
                     <img
-                      src="/gradient-sphere-background.png"
+                      src={project.image}
                       alt={`${project.title} project`}
                       className="w-full h-full object-cover"
                     />

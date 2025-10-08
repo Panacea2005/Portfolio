@@ -106,14 +106,23 @@ Build interactive data dashboards, generative media tools, and immersive 3D user
 - **Link:** [https://github.com/Panacea2005/NOVA](https://github.com/Panacea2005/NOVA)  
 
 ### Project 3
+- **Name:** ClimaLens  
+- **Category:** AI / Data Analytics / Sustainability  
+- **Description:** AI-driven environmental analytics platform that visualizes real-time climate data, predicts air quality trends, and provides actionable sustainability insights using machine learning and geospatial mapping.  
+- **Link:** [https://github.com/Panacea2005/ClimaLens](https://github.com/Panacea2005/ClimaLens)  
+
+### Project 4
 - **Name:** Genie  
 - **Category:** AI / HealthTech  
 - **Description:** LLM-powered mental health assistant featuring RAG pipelines, self-refinement loops, and dynamic risk assessment.  
+- **Link:** [https://github.com/Panacea2005/Genie](https://github.com/Panacea2005/Genie) 
 
-### Project 4
+### Project 5
 - **Name:** Flipside  
 - **Category:** Blockchain / Analytics  
 - **Description:** DeFi and NFT analytics platform with AI-powered transaction visualization, multi-chain tracking, and custom smart contracts.  
+- **Link:** [https://github.com/Panacea2005/Flipside](https://github.com/Panacea2005/Flipside) 
+
 
 ---
 

@@ -1,117 +1,29 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useState, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
-import { Header } from "@/components/header"
 import { MenuOverlay } from "@/components/menu-overlay"
 import { Footer } from "@/components/footer"
+import { FixedUIElements } from "@/components/fixed-ui-elements"
+import { CustomCursor } from "@/components/custom-cursor"
 
 export default function ContactPage() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [cursorText, setCursorText] = useState<string | null>(null)
-  const [percent, setPercent] = useState(0)
-  const cursorRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Use requestAnimationFrame for smooth animation
-      requestAnimationFrame(() => {
-        if (cursorRef.current) {
-          cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
-        }
-      })
-      
-      // Detect hover target and set cursor text
-      const target = e.target as HTMLElement
-      const hoverText = target.getAttribute('data-cursor-text')
-      if (hoverText !== cursorText) {
-        setCursorText(hoverText)
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true })
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [cursorText])
-
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const p = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0
-      setPercent(Math.round(p))
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
-  const textColor = percent >= 98 ? 'text-black' : 'text-white'
-
   return (
     <>
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[999] flex items-center justify-center transition-all duration-200 ease-out"
-        style={{
-          transform: "translate(0px, 0px)",
-          width: cursorText ? '140px' : '100px',
-          height: cursorText ? '140px' : '100px',
-          marginLeft: cursorText ? '-70px' : '-50px',
-          marginTop: cursorText ? '-70px' : '-50px',
-          willChange: 'transform',
-        }}
-      >
-        {/* Blurred background circle */}
-        <div 
-          className="absolute inset-0 rounded-full bg-zinc-700/30"
-          style={{ filter: "blur(3px)" }}
-        />
-        
-        {/* Sharp content (plus or text) */}
-        <div className="relative z-10 flex items-center justify-center">
-          {cursorText ? (
-            <span className="text-white text-xs font-light text-center px-3 leading-tight">
-              {cursorText}
-            </span>
-          ) : (
-            <span className="text-white/50 text-2xl font-light">+</span>
-          )}
-        </div>
-      </div>
-
-      <style jsx global>{`
-        * {
-          cursor: none !important;
-        }
-      `}</style>
+      <CustomCursor />
 
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
-      {/* Persistent Header */}
-      <div className="fixed top-0 left-0 right-0 z-40 text-white pt-8">
-        <Header onMenuClick={() => setIsMenuOpen(true)} />
-      </div>
-
-      {/* Back to Top */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-8 right-12 z-40 text-xs tracking-wider font-light transition-colors duration-300 ${textColor}`}
-        data-cursor-text="SCROLL TO TOP"
-      >
-        BACK TO TOP
-      </button>
-
-      {/* Scroll Percentage */}
-      <div className={`fixed bottom-8 left-12 z-40 text-xs tracking-wider font-light transition-colors duration-300 ${textColor}`}>
-        SCROLL {percent}%
-      </div>
+      {/* Fixed UI Elements */}
+      <FixedUIElements onMenuClick={() => setIsMenuOpen(true)} scrollToTop={scrollToTop} />
 
       {/* Contact Details Section with Background */}
       <ContactWithBackground />
@@ -251,8 +163,8 @@ function ContactWithBackground() {
                         ))}
                       </motion.h3>
                     </div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-sm leading-relaxed font-light">
-                      <p>Slack / Discord / Zoom / GitHub</p>
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-lg leading-relaxed font-light">
+                      <p>Notion / Discord / Linear / GitHub / LinkedIn / X / YouTube</p>
                     </motion.div>
                   </div>
                 </motion.div>
@@ -283,7 +195,7 @@ function ContactWithBackground() {
                         ))}
                       </motion.h3>
                     </div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-sm leading-relaxed font-light space-y-2">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-lg leading-relaxed font-light space-y-2">
                       <p>ng.t.thien01@gmail.com</p>
                       <p>Phone: +84 931 549 083</p>
                     </motion.div>
@@ -316,11 +228,11 @@ function ContactWithBackground() {
                         ))}
                       </motion.h3>
                     </div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-sm leading-relaxed font-light space-y-2">
-                      <p>🏆 Best AI App – Solana Swinburne Hackathon 2025 (VOID)</p>
-                      <p>🎯 Solana Colosseum Breakout Hackathon 2025 (N.OVA)</p>
-                      <p>💡 Best Performance – Computing Technology Innovative Project (Flipside)</p>
-                      <p>🌍 Top Global Participant – Colosseum Breakout Hackathon 2025</p>
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-lg leading-relaxed font-light space-y-2">
+                      <p>Best AI App – Solana Swinburne Hackathon 2025 (VOID)</p>
+                      <p>Solana Colosseum Breakout Hackathon 2025 Participant (N.OVA)</p>
+                      <p>NASA Space Apps Challenge 2025 Participant (ClimaLens)</p>
+                      <p>Best Performance – Computing Technology Innovative Project (Flipside)</p>
                     </motion.div>
                   </div>
                 </motion.div>
@@ -351,7 +263,7 @@ function ContactWithBackground() {
                         ))}
                       </motion.h3>
                     </div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-sm leading-relaxed font-light space-y-3">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-lg leading-relaxed font-light space-y-3">
                       <a href="https://github.com/Panacea2005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity" data-cursor-text="GITHUB">
                         GitHub <span className="text-xs">↗</span>
                       </a>

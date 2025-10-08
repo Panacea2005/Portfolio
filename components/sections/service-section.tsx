@@ -10,18 +10,33 @@ export function ServiceSection() {
     offset: ["start end", "end start"]
   })
 
-  // Individual transformations for each circle
-  const circle1Y = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, -80, -160, -80, 0])
-  const circle2Y = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 60, 120, 60, 0])
-  const circle3Y = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, -100, -200, -100, 0])
-  
-  const circle1X = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 40, 80, 40, 0])
-  const circle2X = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, -60, -120, -60, 0])
-  const circle3X = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 80, 160, 80, 0])
-  
+  // Complex motion transformations for wow effect
   const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 360])
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -360])
-  const rotate3 = useTransform(scrollYProgress, [0, 1], [0, 540])
+  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -180])
+  const rotate3 = useTransform(scrollYProgress, [0, 1], [0, 270])
+  const rotate4 = useTransform(scrollYProgress, [0, 1], [0, -450])
+  
+  // Morphing circles - changing from circle to ellipse
+  const rx1 = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [80, 120, 80, 50, 80])
+  const ry1 = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [80, 50, 80, 120, 80])
+  
+  const rx2 = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [120, 150, 100, 120])
+  const ry2 = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [120, 100, 150, 120])
+  
+  const rx3 = useTransform(scrollYProgress, [0, 0.5, 1], [160, 190, 160])
+  const ry3 = useTransform(scrollYProgress, [0, 0.5, 1], [160, 130, 160])
+  
+  const rx4 = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [200, 230, 180, 200])
+  const ry4 = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [200, 180, 230, 200])
+  
+  // Position shifts for dots
+  const dotShift1 = useTransform(scrollYProgress, [0, 0.5, 1], [0, 15, 0])
+  const dotShift2 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -12, 0])
+  
+  // Opacity pulsing
+  const opacity1 = useTransform(scrollYProgress, [0, 0.5, 1], [0.25, 0.5, 0.25])
+  const opacity2 = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.45, 0.2])
+  const opacity3 = useTransform(scrollYProgress, [0, 0.5, 1], [0.15, 0.35, 0.15])
 
   // Split intro text into lines for reveal animation
   const introLines: ReactNode[] = useMemo(
@@ -78,65 +93,134 @@ export function ServiceSection() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-24 max-w-7xl mx-auto px-12">
-        {/* Left - Sticky Art */}
-        <div className="sticky top-0 h-screen flex items-center justify-center">
-          <div className="relative w-[600px] h-[600px]">
+      <div className="relative max-w-7xl mx-auto">
+        {/* Left - Sticky Art - centered at 70% line (2nd line from right) */}
+        <div className="absolute left-[70%] top-0 sticky h-screen flex items-center z-0" style={{ transform: 'translateX(84px)' }}>
+          <div className="relative w-[500px] h-[500px]">
+            {/* Central dot */}
             <svg viewBox="0 0 500 500" className="absolute inset-0 w-full h-full">
-              <circle cx="250" cy="250" r="220" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" />
+              <circle cx="250" cy="250" r="7" fill="rgba(255,255,255,1)" />
+              
+              {/* Cross lines - extended longer with better visibility */}
+              <line x1="10" y1="250" x2="490" y2="250" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeDasharray="4 4" />
+              <line x1="250" y1="10" x2="250" y2="490" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeDasharray="4 4" />
+              
+              {/* Four cardinal dots at the ends of axes */}
+              <circle cx="250" cy="10" r="6" fill="rgba(255,255,255,1)" />
+              <circle cx="490" cy="250" r="6" fill="rgba(255,255,255,1)" />
+              <circle cx="250" cy="490" r="6" fill="rgba(255,255,255,1)" />
+              <circle cx="10" cy="250" r="6" fill="rgba(255,255,255,1)" />
             </svg>
-            <motion.svg viewBox="0 0 500 500" className="absolute inset-0 w-full h-full" style={{ y: circle1Y, x: circle1X, rotate: rotate1 }}>
-              <ellipse cx="250" cy="250" rx="220" ry="70" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
-              <ellipse cx="250" cy="250" rx="220" ry="120" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1" />
-              <ellipse cx="250" cy="250" rx="220" ry="170" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1" />
+
+            {/* Main four petal circles - solid stroke, rotating slowly */}
+            <motion.svg 
+              viewBox="0 0 500 500" 
+              className="absolute inset-0 w-full h-full"
+              style={{ rotate: rotate1 }}
+            >
+              <motion.circle 
+                cx="250" 
+                cy="155" 
+                r="90" 
+                fill="none" 
+                stroke="rgba(255,255,255,0.7)" 
+                strokeWidth="1.5"
+                style={{ opacity: opacity1 }}
+              />
+              <motion.circle 
+                cx="345" 
+                cy="250" 
+                r="90" 
+                fill="none" 
+                stroke="rgba(255,255,255,0.7)" 
+                strokeWidth="1.5"
+                style={{ opacity: opacity1 }}
+              />
+              <motion.circle 
+                cx="250" 
+                cy="345" 
+                r="90" 
+                fill="none" 
+                stroke="rgba(255,255,255,0.7)" 
+                strokeWidth="1.5"
+                style={{ opacity: opacity1 }}
+              />
+              <motion.circle 
+                cx="155" 
+                cy="250" 
+                r="90" 
+                fill="none" 
+                stroke="rgba(255,255,255,0.7)" 
+                strokeWidth="1.5"
+                style={{ opacity: opacity1 }}
+              />
             </motion.svg>
-            <motion.svg viewBox="0 0 500 500" className="absolute inset-0 w-full h-full" style={{ y: circle2Y, x: circle2X, rotate: rotate2 }}>
-              <ellipse cx="250" cy="250" rx="70" ry="220" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
-              <ellipse cx="250" cy="250" rx="120" ry="220" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1" />
-              <ellipse cx="250" cy="250" rx="170" ry="220" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1" />
+
+            {/* Inner decorative circle - dashed, rotating opposite */}
+            <motion.svg 
+              viewBox="0 0 500 500" 
+              className="absolute inset-0 w-full h-full"
+              style={{ rotate: rotate2 }}
+            >
+              <motion.circle 
+                cx="250" 
+                cy="250" 
+                r="75" 
+                fill="none" 
+                stroke="rgba(255,255,255,0.7)" 
+                strokeWidth="1.5"
+                strokeDasharray="6 6"
+                style={{ opacity: opacity2 }}
+              />
             </motion.svg>
-            <motion.svg viewBox="0 0 500 500" className="absolute inset-0 w-full h-full" style={{ y: circle3Y, x: circle3X, rotate: rotate3 }}>
-              <circle cx="250" cy="250" r="6" fill="rgba(255,255,255,0.9)" />
-              <circle cx="250" cy="100" r="5" fill="rgba(255,255,255,0.8)" />
-              <circle cx="250" cy="400" r="5" fill="rgba(255,255,255,0.8)" />
-              <circle cx="100" cy="250" r="5" fill="rgba(255,255,255,0.8)" />
-              <circle cx="400" cy="250" r="5" fill="rgba(255,255,255,0.8)" />
-              <circle cx="155" cy="155" r="4" fill="rgba(255,255,255,0.7)" />
-              <circle cx="345" cy="155" r="4" fill="rgba(255,255,255,0.7)" />
-              <circle cx="155" cy="345" r="4" fill="rgba(255,255,255,0.7)" />
-              <circle cx="345" cy="345" r="4" fill="rgba(255,255,255,0.7)" />
+
+            {/* Outer boundary circle - solid */}
+            <motion.svg 
+              viewBox="0 0 500 500" 
+              className="absolute inset-0 w-full h-full"
+              style={{ rotate: rotate3 }}
+            >
+              <motion.circle 
+                cx="250" 
+                cy="250" 
+                r="185" 
+                fill="none" 
+                stroke="rgba(255,255,255,0.7)" 
+                strokeWidth="1.5"
+                style={{ opacity: opacity3 }}
+              />
             </motion.svg>
           </div>
         </div>
 
         {/* Right - 4 full-screen services stacked */}
-        <div>
+        <div className="relative z-10 px-12 ml-auto max-w-2xl">
           <div className="min-h-screen flex items-center text-white">
             <div>
-              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60">01</p>
-              <h3 className="text-5xl font-light mb-6 tracking-tight">AI/ML Solutions</h3>
-              <p className="text-lg leading-relaxed font-light text-white/90">I design and build intelligent systems with LLMs, RAG pipelines, and self-refinement methods for smarter, context-aware user experiences across various AI-powered applications.</p>
+              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60 -ml-4">01</p>
+              <h3 className="text-5xl font-light mb-6 tracking-tight ml-4">AI/ML Solutions</h3>
+              <p className="text-lg leading-relaxed font-light text-white/90 ml-4">I design and build intelligent systems with LLMs, RAG pipelines, and self-refinement methods for smarter, context-aware user experiences across various AI-powered applications.</p>
             </div>
           </div>
           <div className="min-h-screen flex items-center text-white">
             <div>
-              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60">02</p>
-              <h3 className="text-5xl font-light mb-6 tracking-tight">Full-Stack Web Development</h3>
-              <p className="text-lg leading-relaxed font-light text-white/90">I develop modern, responsive web applications using React, Next.js, and Node.js with integrated APIs and cloud databases, focusing on performance, scalability, and exceptional user experiences.</p>
+              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60 -ml-4">02</p>
+              <h3 className="text-5xl font-light mb-6 tracking-tight ml-4">Full-Stack Web Development</h3>
+              <p className="text-lg leading-relaxed font-light text-white/90 ml-4">I develop modern, responsive web applications using React, Next.js, and Node.js with integrated APIs and cloud databases, focusing on performance, scalability, and exceptional user experiences.</p>
             </div>
           </div>
           <div className="min-h-screen flex items-center text-white">
             <div>
-              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60">03</p>
-              <h3 className="text-5xl font-light mb-6 tracking-tight">Web3 & Blockchain</h3>
-              <p className="text-lg leading-relaxed font-light text-white/90">I create decentralized platforms, NFT marketplaces, and AI-driven blockchain experiences on Solana and Ethereum. Building secure smart contracts and seamless wallet integrations for the next generation of Web3 applications.</p>
+              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60 -ml-4">03</p>
+              <h3 className="text-5xl font-light mb-6 tracking-tight ml-4">Web3 & Blockchain</h3>
+              <p className="text-lg leading-relaxed font-light text-white/90 ml-4">I create decentralized platforms, NFT marketplaces, and AI-driven blockchain experiences on Solana and Ethereum. Building secure smart contracts and seamless wallet integrations for the next generation of Web3 applications.</p>
             </div>
           </div>
           <div className="min-h-screen flex items-center text-white">
             <div>
-              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60">04</p>
-              <h3 className="text-5xl font-light mb-6 tracking-tight">Data Visualization</h3>
-              <p className="text-lg leading-relaxed font-light text-white/90">I build interactive data dashboards, generative media tools, and immersive 3D user interfaces for digital storytelling. Transforming complex data into engaging visual narratives that drive insights and decision-making.</p>
+              <p className="text-xs tracking-[0.3em] font-light mb-6 text-white/60 -ml-4">04</p>
+              <h3 className="text-5xl font-light mb-6 tracking-tight ml-4">Data Visualization</h3>
+              <p className="text-lg leading-relaxed font-light text-white/90 ml-4">I build interactive data dashboards, generative media tools, and immersive 3D user interfaces for digital storytelling. Transforming complex data into engaging visual narratives that drive insights and decision-making.</p>
             </div>
           </div>
         </div>

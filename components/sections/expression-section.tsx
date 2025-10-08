@@ -10,22 +10,27 @@ export function ExpressionSection() {
     offset: ["start start", "end end"],
   })
 
-  // 8 directions to corners/edges + 1 final center fullscreen
+  // 4 corners + 1 final center fullscreen
   const baseTargets = [
-    { x: -48, y: -40 }, // 1 top-left
-    { x: 0, y: -44 },   // 2 top-center
-    { x: 48, y: -40 },  // 3 top-right
-    { x: -52, y: 0 },   // 4 mid-left
-    { x: 52, y: 0 },    // 5 mid-right
-    { x: -48, y: 40 },  // 6 bottom-left
-    { x: 0, y: 44 },    // 7 bottom-center
-    { x: 48, y: 40 },   // 8 bottom-right
-    { x: 0, y: 0 },     // 9 center → fullscreen
+    { x: -48, y: -40 }, // 1 top-left: Flipside
+    { x: 48, y: -40 },  // 2 top-right: VOID
+    { x: -48, y: 40 },  // 3 bottom-left: N.OVA
+    { x: 48, y: 40 },   // 4 bottom-right: Genie
+    { x: 0, y: 0 },     // 5 center → fullscreen: ClimaLens
   ]
 
-  // Allocate timeline windows so user can't finish before all 9 animations
-  const windowSize = 0.09
-  const windowGap = 0.02
+  // Images from works folder
+  const images = [
+    "/works/flipside.png",
+    "/works/void.png",
+    "/works/n-ova.png",
+    "/works/genie.png",
+    "/works/climalens.png",
+  ]
+
+  // Allocate timeline windows for 5 animations
+  const windowSize = 0.15
+  const windowGap = 0.03
 
   const items = baseTargets.map((t, i) => {
     const start = 0.12 + i * (windowSize + windowGap)
@@ -58,10 +63,11 @@ export function ExpressionSection() {
   })
 
   const lastFullEnd = (items[items.length - 1] as any).fullEnd
-  const headingOpacity = useTransform(scrollYProgress, [0, lastFullEnd - 0.08, lastFullEnd, 1], [1, 0.5, 0, 0])
+  // Heading disappears when last image appears
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.12 + 4 * (windowSize + windowGap) - 0.05, 0.12 + 4 * (windowSize + windowGap), 1], [1, 1, 0, 0])
 
   return (
-    <section ref={sectionRef} className="relative min-h-[520vh]">
+    <section ref={sectionRef} className="relative min-h-[400vh]">
       {/* Sticky full-screen stage */}
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Centered heading */}
@@ -80,19 +86,26 @@ export function ExpressionSection() {
 
         {/* Stage center: rectangles emerge and fly; last scales to fullscreen */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0">
-          {items.map((it, i) => (
-            <motion.div
-              key={i}
-              style={{ x: it.x, y: it.y, scale: it.scale, opacity: it.opacity, zIndex: it.zIndex }}
-              className="absolute -translate-x-1/2 -translate-y-1/2 w-[640px] h-[360px] overflow-hidden border border-white/25 bg-transparent"
-            >
-              <img
-                src={`/gradient-sphere-background.png`}
-                alt={`Image ${i + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          ))}
+          {items.map((it, i) => {
+            const isLast = i === items.length - 1
+            return (
+              <motion.div
+                key={i}
+                style={{ x: it.x, y: it.y, scale: it.scale, opacity: it.opacity, zIndex: it.zIndex }}
+                className={`absolute -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-black ${
+                  isLast 
+                    ? 'w-screen h-screen flex items-center justify-center' 
+                    : 'w-[640px] h-[360px] border border-white/25'
+                }`}
+              >
+                <img
+                  src={images[i]}
+                  alt={`Project ${i + 1}`}
+                  className={isLast ? "h-full w-auto object-cover" : "w-full h-full object-cover"}
+                />
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
