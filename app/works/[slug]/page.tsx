@@ -62,6 +62,16 @@ const projects = {
     credits: "AI Engineer: Panacea",
     visitLink: "https://genie.vercel.app"
   },
+  "longchau-pms": {
+    id: 8,
+    title: "LongChau PMS",
+    category: "WEB, E-COMMERCE",
+    type: "PROJECT",
+    image: "/works/longchau-pms/longchau-pms.png",
+    description: "A comprehensive pharmacy management and e-commerce platform for Long Chau Pharmacy built with Next.js, TypeScript, and Supabase, covering inventory, orders, and storefront.",
+    credits: "Full-stack: Panacea",
+    visitLink: "https://long-chau-pms.vercel.app"
+  },
     "tribalyn": {
       id: 7,
       title: "Tribalyn",
@@ -85,7 +95,7 @@ const projects = {
 }
 
 // Project order for navigation
-const projectOrder = ["panacea", "flipside", "void", "n-ova", "genie", "tribalyn", "climalens"]
+const projectOrder = ["panacea", "flipside", "void", "n-ova", "genie", "longchau-pms", "tribalyn", "climalens"]
 
 export default function ProjectDetailPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

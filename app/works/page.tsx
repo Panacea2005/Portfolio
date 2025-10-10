@@ -51,6 +51,14 @@ const projects = [
     image: "/works/genie/genie.png"
   },
   { 
+    id: 8, 
+    title: "LongChau PMS", 
+    category: "WEB, E-COMMERCE", 
+    type: "PROJECT",
+    span: "col-span-2 row-span-2",
+    image: "/works/longchau-pms/longchau-pms.png"
+  },
+  { 
     id: 7, 
     title: "Tribalyn", 
     category: "AI, VTON", 
@@ -120,7 +128,7 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
   const footerTransition = useTransform(scrollYProgress, [0.98, 1], [0, 1])
   
   // Simplified categories
-  const categories = ["ALL", "WEB3", "AI", "DATA", "VTON", "PORTFOLIO"]
+  const categories = ["ALL", "WEB3", "AI", "DATA", "VTON", "PORTFOLIO", "WEB", "E-COMMERCE"]
   
   return (
     <div ref={wrapperRef} className="relative">
@@ -263,12 +271,19 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                         href={`/works/${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}
                         className="block w-full h-full"
                       >
-                        <div className={`relative w-full h-full flex items-center justify-center ${project.title === "Flipside" ? "bg-white" : "bg-black"}`}>
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="h-full w-auto min-w-full object-cover transition-all duration-500 group-hover:blur-md group-hover:scale-110"
-                          />
+                        <div className={`relative w-full h-full flex items-center justify-center ${(project.title === "Flipside" || project.title === "LongChau PMS") ? "bg-white" : "bg-black"}`}>
+                          {(() => {
+                            const isLongChau = project.title === "LongChau PMS"
+                            return (
+                              <img
+                                src={project.image}
+                                alt={project.title}
+                                className={isLongChau
+                                  ? "w-full h-full object-contain transition-all duration-500"
+                                  : "h-full w-auto min-w-full object-cover transition-all duration-500 group-hover:blur-md group-hover:scale-110"}
+                              />
+                            )
+                          })()}
 
                           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-start justify-end text-left p-8">
                             <h3 className="text-3xl font-light mb-2 text-white">{project.title}</h3>

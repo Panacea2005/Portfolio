@@ -1,86 +1,53 @@
-# Panacea - AI Engineer & Web Developer Portfolio
+<p align="center">
+  <img src="public/favicon.png" alt="Panacea" width="120" height="120" />
+</p>
 
-A modern, professional portfolio showcasing AI/ML projects, Web3 applications, and full-stack development work.
+<p align="center">
+  <strong>Panacea — AI & Web3 Developer Portfolio</strong>
+</p>
 
-## 🚀 Features
+<p align="center">
+  <a href="https://panacea-dev.vercel.app"><img alt="Deploy" src="https://img.shields.io/badge/Live-Website-0ea5e9?style=flat&logo=vercel"/></a>
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-14-000000?style=flat&logo=nextdotjs"/>
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white"/>
+  <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind_CSS-3-38B2AC?style=flat&logo=tailwindcss&logoColor=white"/>
+  <img alt="Framer Motion" src="https://img.shields.io/badge/Framer%20Motion-Animations-0055FF?style=flat&logo=framer"/>
+  <img alt="Supabase" src="https://img.shields.io/badge/Supabase-DB-3FCF8E?style=flat&logo=supabase&logoColor=white"/>
+</p>
 
-- **Next.js 14** with App Router
-- **Framer Motion** animations
-- **Tailwind CSS** for styling
-- **TypeScript** for type safety
-- **SEO Optimized** with comprehensive metadata
-- **Responsive Design** - Mobile-first approach
-- **PWA Support** with manifest.json
-- **Structured Data** (JSON-LD) for better search visibility
+### Overview
+Modern portfolio showcasing AI/ML, Web3, and full‑stack projects with smooth motion design, strong SEO, and responsive UX.
 
-## 📋 Tech Stack
+### Features
+- Next.js App Router, TypeScript, Tailwind CSS
+- Framer Motion animations
+- SEO metadata, sitemap, PWA manifest, JSON‑LD
 
-### Frontend
-- React.js / Next.js
-- Tailwind CSS
-- Framer Motion
-- TypeScript
+### Sections
+- Home, Profile, Works, Contact
 
-### SEO & Performance
-- Open Graph tags
-- Twitter Cards
-- Sitemap generation
-- Robots.txt
-- PWA Manifest
-- Structured Data (Schema.org)
+### Featured Projects
+- Flipside — DeFi/NFT analytics (Web3, Data)
+- VOID — AI playground on Solana (AI, Web3)
+- N.OVA — AI‑native Web3 identity (AI, Web3)
+- Genie — LLM mental health assistant (AI, Data)
+- LongChau PMS — Pharmacy management & e‑commerce (Web, Supabase, PRJ)
 
-## 🎨 Sections
-
-1. **Home** - Hero section with expertise showcase
-2. **Profile** - Detailed bio, skills, and achievements
-3. **Works** - Project portfolio with filtering
-4. **Contact** - Contact information and social links
-
-## 📊 Projects Featured
-
-- **VOID** - AI-powered NFT platform (🏆 Best AI App - Solana Swinburne Hackathon 2025)
-- **N.OVA** - AI-native Web3 identity platform
-- **Genie** - LLM-powered mental health assistant
-- **Flipside** - DeFi and NFT analytics platform
-
-## 🛠️ Development
-
+### Development
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+# build & start
+npm run build && npm start
 ```
 
-## 📝 TODO: Add OG Image
+### Links
+- Live: https://panacea-dev.vercel.app
+- GitHub: https://github.com/Panacea2005
+- LinkedIn: https://www.linkedin.com/in/panaceadev
 
-Create an Open Graph image at `public/og-image.png` (1200x630px) for social media sharing.
-
-## 📱 Contact
-
-- **Email**: ng.t.thien01@gmail.com
-- **Phone**: +84 931 549 083
-- **Location**: Ho Chi Minh City, Vietnam
-
-## 🔗 Social Links
-
-- [GitHub](https://github.com/Panacea2005)
-- [LinkedIn](https://www.linkedin.com/in/panaceadev)
-- [X/Twitter](https://x.com/panacea___005)
-- [YouTube](https://www.youtube.com/@Panacea2005)
-- [Instagram](https://www.instagram.com/__tthien/)
-
-## 📄 License
+### Contact
+- Email: ng.t.thien01@gmail.com
+- Location: Ho Chi Minh City, Vietnam
 
 © 2025 Panacea. All rights reserved.
-
----
-
-**Deployment URL**: https://panacea-dev.vercel.app

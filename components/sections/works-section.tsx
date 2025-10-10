@@ -33,6 +33,13 @@ const projects = [
     image: "/index/genie.png",
   },
   {
+    title: "LongChau PMS",
+    tags: "WEB, E-COMMERCE",
+    gradient: "from-emerald-500 to-teal-600",
+    align: "right", // 50% to 90%
+    image: "/index/longchau-pms.png",
+  },
+  {
     title: "Tribalyn",
     tags: "AI, VTON",
     gradient: "from-indigo-500 to-violet-600",
