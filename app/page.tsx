@@ -17,6 +17,7 @@ import { CustomCursor } from "@/components/custom-cursor"
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [isFooterOpen, setIsFooterOpen] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -30,7 +31,7 @@ export default function Page() {
       {/* Custom Cursor */}
       <CustomCursor />
 
-      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} isFooterOpen={isFooterOpen} />
 
       {/* Fixed UI elements with color transition */}
       <FixedUIElements onMenuClick={() => setIsMenuOpen(true)} scrollToTop={scrollToTop} />
@@ -45,7 +46,7 @@ export default function Page() {
       </HeroProfileWithSphere>
 
       {/* Services to Get In Touch + Footer with /background.png (scoped sticky) */}
-      <ServicesGetInTouchFooterWithBackground />
+      <ServicesGetInTouchFooterWithBackground setIsFooterOpen={setIsFooterOpen} />
     </>
   )
 }
@@ -63,7 +64,7 @@ function HeroProfileWithSphere({ children }: { children: React.ReactNode }) {
     <div ref={wrapperRef} className="relative bg-black">
       <motion.div className="fixed inset-0 pointer-events-none flex items-center justify-center z-0" style={{ opacity }}>
         <motion.img
-          src="/gradient-sphere.png"
+          src="/index/gradient-sphere.png"
           alt="Gradient Sphere"
           className="w-[66vmin] h-[66vmin] object-contain"
           animate={{ rotate: 360 }}
@@ -76,7 +77,11 @@ function HeroProfileWithSphere({ children }: { children: React.ReactNode }) {
   )
 }
 
-function ServicesGetInTouchFooterWithBackground() {
+interface ServicesGetInTouchFooterWithBackgroundProps {
+  setIsFooterOpen: (isOpen: boolean) => void
+}
+
+function ServicesGetInTouchFooterWithBackground({ setIsFooterOpen }: ServicesGetInTouchFooterWithBackgroundProps) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrapperRef, offset: ["start start", "end end"] })
   
@@ -108,7 +113,7 @@ function ServicesGetInTouchFooterWithBackground() {
             backgroundColor: useTransform(footerTransition, (v) => `rgba(255, 255, 255, ${v})`),
           }}
         >
-          <Footer transitionProgress={footerTransition} />
+          <Footer transitionProgress={footerTransition} onFooterOpen={setIsFooterOpen} />
         </motion.div>
       </div>
     </div>

@@ -21,11 +21,11 @@ export function ExpressionSection() {
 
   // Images from works folder
   const images = [
-    "/works/flipside.png",
-    "/works/void.png",
-    "/works/n-ova.png",
-    "/works/genie.png",
-    "/works/climalens.png",
+    "/works/flipside/flipside.png",
+    "/works/void/void.png",
+    "/works/n-ova/n-ova.png",
+    "/works/genie/genie.png",
+    "/works/climalens/climalens.png",
   ]
 
   // Allocate timeline windows for 5 animations

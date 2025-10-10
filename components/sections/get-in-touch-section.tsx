@@ -15,7 +15,7 @@ export function GetInTouchSection() {
   }, [isHovered])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-32">
+    <section className="relative min-h-[150vh] flex items-center justify-center overflow-hidden py-32">
       {/* Vertical lines pattern - continuing to footer */}
       <div className="absolute inset-0 pointer-events-none opacity-30 overflow-hidden">
         <div className="absolute left-[10%] top-0 bottom-0 w-[0.5px] bg-white" />

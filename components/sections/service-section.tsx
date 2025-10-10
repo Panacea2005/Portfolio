@@ -59,7 +59,7 @@ export function ServiceSection() {
       </div>
 
       {/* Header + Intro */}
-      <div className="relative z-10 px-12 max-w-7xl mx-auto pt-24">
+      <div className="relative z-10 pt-24" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
           <p className="text-xs tracking-wider font-light mb-6">[SERVICE]</p>
         </motion.div>
@@ -94,9 +94,9 @@ export function ServiceSection() {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Left - Sticky Art - centered at 70% line (2nd line from right) */}
-        <div className="absolute left-[70%] top-0 sticky h-screen flex items-center z-0" style={{ transform: 'translateX(84px)' }}>
-          <div className="relative w-[500px] h-[500px]">
+        {/* Left - Sticky Art - centered at 30% line (2nd line from left) */}
+        <div className="absolute top-0 sticky h-screen flex items-center justify-center z-0" style={{ left: '17.5%', width: '30%' }}>
+          <div className="relative w-[600px] h-[600px]">
             {/* Central dot */}
             <svg viewBox="0 0 500 500" className="absolute inset-0 w-full h-full">
               <circle cx="250" cy="250" r="7" fill="rgba(255,255,255,1)" />

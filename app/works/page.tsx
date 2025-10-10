@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import Link from "next/link"
 import { MenuOverlay } from "@/components/menu-overlay"
 import { Footer } from "@/components/footer"
 import { LoadingScreen } from "@/components/loading-screen"
@@ -10,39 +11,60 @@ import { CustomCursor } from "@/components/custom-cursor"
 
 const projects = [
   { 
+    id: 6, 
+    title: "Panacea", 
+    category: "PORTFOLIO", 
+    type: "PLAY",
+    span: "col-span-3 row-span-1",
+    image: "/works/panacea/panacea.png"
+  },
+  { 
     id: 1, 
     title: "Flipside", 
-    category: "WEB3, ANALYTICS, NFT", 
-    span: "col-span-2 row-span-1",
-    image: "/works/flipside.png"
+    category: "WEB3, DATA", 
+    type: "PROJECT",
+    span: "col-span-2 row-span-2",
+    image: "/works/flipside/flipside.png"
   },
   { 
     id: 2, 
     title: "VOID", 
-    category: "AI, WEB3, GAMING", 
+    category: "AI, WEB3", 
+    type: "PROJECT",
     span: "col-span-1 row-span-1",
-    image: "/works/void.png"
+    image: "/works/void/void.png"
   },
   { 
     id: 3, 
     title: "N.OVA", 
-    category: "AI, WEB3, IDENTITY", 
+    category: "AI, WEB3", 
+    type: "PROJECT",
     span: "col-span-1 row-span-1",
-    image: "/works/n-ova.png"
+    image: "/works/n-ova/n-ova.png"
   },
   { 
     id: 4, 
     title: "Genie", 
-    category: "AI, RAG, MENTAL HEALTH", 
+    category: "AI, DATA", 
+    type: "PROJECT",
+    span: "col-span-1 row-span-2",
+    image: "/works/genie/genie.png"
+  },
+  { 
+    id: 7, 
+    title: "Tribalyn", 
+    category: "AI, VTON", 
+    type: "PROJECT",
     span: "col-span-2 row-span-1",
-    image: "/works/genie.png"
+    image: "/works/tribalyn/tribalyn.png"
   },
   { 
     id: 5, 
     title: "ClimaLens", 
-    category: "AI, DATA ANALYTICS, SUSTAINABILITY", 
-    span: "col-span-2 row-span-1",
-    image: "/works/climalens.png"
+    category: "AI, DATA", 
+    type: "PROJECT",
+    span: "col-span-1 row-span-1",
+    image: "/works/climalens/climalens.png"
   },
 ]
 
@@ -51,6 +73,7 @@ export default function WorksPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [selectedType, setSelectedType] = useState("ALL")
   const [selectedCategory, setSelectedCategory] = useState("ALL")
+  const [isFooterOpen, setIsFooterOpen] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -69,13 +92,13 @@ export default function WorksPage() {
           {/* Custom Cursor */}
           <CustomCursor />
 
-          <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+          <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} isFooterOpen={isFooterOpen} />
 
           {/* Fixed UI Elements */}
           <FixedUIElements onMenuClick={() => setIsMenuOpen(true)} scrollToTop={scrollToTop} />
 
           {/* Works Content with Background */}
-          <WorksWithBackground selectedType={selectedType} setSelectedType={setSelectedType} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+          <WorksWithBackground selectedType={selectedType} setSelectedType={setSelectedType} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setIsFooterOpen={setIsFooterOpen} />
         </>
       )}
     </>
@@ -87,24 +110,17 @@ interface WorksWithBackgroundProps {
   setSelectedType: (type: string) => void
   selectedCategory: string
   setSelectedCategory: (category: string) => void
+  setIsFooterOpen: (isOpen: boolean) => void
 }
 
-function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, setSelectedCategory }: WorksWithBackgroundProps) {
+function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, setSelectedCategory, setIsFooterOpen }: WorksWithBackgroundProps) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrapperRef, offset: ["start start", "end end"] })
   
   const footerTransition = useTransform(scrollYProgress, [0.98, 1], [0, 1])
   
-  // Extract unique categories from projects
-  const allCategories = Array.from(
-    new Set(
-      projects.flatMap(p => 
-        p.category.split(',').map(c => c.trim().toUpperCase())
-      )
-    )
-  ).sort()
-  
-  const categories = ["ALL", ...allCategories]
+  // Simplified categories
+  const categories = ["ALL", "WEB3", "AI", "DATA", "VTON", "PORTFOLIO"]
   
   return (
     <div ref={wrapperRef} className="relative">
@@ -172,7 +188,30 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                   <div>
                     <p className="text-white mb-4 font-serif not-italic">Type</p>
                     <div className="space-y-2">
-                      <div className="text-white">PROJECT</div>
+                      <button
+                        onClick={() => setSelectedType("ALL")}
+                        className={`block transition-colors ${
+                          selectedType === "ALL" ? "text-white" : "text-white/40 hover:text-white/60"
+                        }`}
+                      >
+                        ALL
+                      </button>
+                      <button
+                        onClick={() => setSelectedType("PROJECT")}
+                        className={`block transition-colors ${
+                          selectedType === "PROJECT" ? "text-white" : "text-white/40 hover:text-white/60"
+                        }`}
+                      >
+                        PROJECT
+                      </button>
+                      <button
+                        onClick={() => setSelectedType("PLAY")}
+                        className={`block transition-colors ${
+                          selectedType === "PLAY" ? "text-white" : "text-white/40 hover:text-white/60"
+                        }`}
+                      >
+                        PLAY
+                      </button>
                     </div>
                   </div>
 
@@ -201,8 +240,15 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                 <div className="grid grid-cols-3 auto-rows-[300px] gap-0 mb-32">
                   {projects
                     .filter(project => {
-                      if (selectedCategory === "ALL") return true
-                      return project.category.toUpperCase().includes(selectedCategory.toUpperCase())
+                      // Filter by category
+                      const categoryMatch = selectedCategory === "ALL" || 
+                        project.category.toUpperCase().includes(selectedCategory.toUpperCase())
+                      
+                      // Filter by type
+                      const typeMatch = selectedType === "ALL" || 
+                        (project.type && project.type.toUpperCase() === selectedType.toUpperCase())
+                      
+                      return categoryMatch && typeMatch
                     })
                     .map((project, index) => (
                     <motion.div
@@ -213,18 +259,23 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                       viewport={{ once: true }}
                       className={`${project.span} group relative overflow-hidden`}
                     >
-                      <div className={`relative w-full h-full flex items-center justify-center ${project.title === "Flipside" ? "bg-white" : "bg-black"}`}>
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="h-full w-auto min-w-full object-cover transition-all duration-500 group-hover:blur-md group-hover:scale-110"
-                        />
+                      <Link 
+                        href={`/works/${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}
+                        className="block w-full h-full"
+                      >
+                        <div className={`relative w-full h-full flex items-center justify-center ${project.title === "Flipside" ? "bg-white" : "bg-black"}`}>
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="h-full w-auto min-w-full object-cover transition-all duration-500 group-hover:blur-md group-hover:scale-110"
+                          />
 
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center text-center p-8">
-                          <h3 className="text-3xl font-light mb-2 text-white">{project.title}</h3>
-                          <p className="text-sm text-white/60 tracking-wider">{project.category}</p>
+                          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-start justify-end text-left p-8">
+                            <h3 className="text-3xl font-light mb-2 text-white">{project.title}</h3>
+                            <p className="text-sm text-white/60 tracking-wider">{project.category}</p>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </motion.div>
                   ))}
                 </div>
@@ -240,7 +291,7 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
             backgroundColor: useTransform(footerTransition, (v) => `rgba(255, 255, 255, ${v})`),
           }}
         >
-          <Footer transitionProgress={footerTransition} />
+          <Footer transitionProgress={footerTransition} onFooterOpen={setIsFooterOpen} />
         </motion.div>
       </div>
     </div>

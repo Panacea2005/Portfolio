@@ -6,38 +6,52 @@ import { useState } from "react"
 const projects = [
   {
     title: "Flipside",
-    tags: "BLOCKCHAIN, ANALYTICS, DEFI",
+    tags: "WEB3, DATA",
     gradient: "from-orange-500 to-red-600",
     align: "left", // 10% to 50%
-    image: "/flipside.png",
+    image: "/index/flipside.png",
   },
   {
     title: "VOID",
-    tags: "AI, WEB3, GAMING",
+    tags: "AI, WEB3",
     gradient: "from-purple-600 to-blue-500",
     align: "right", // 50% to 90%
-    image: "/void.png",
+    image: "/index/void.png",
   },
   {
     title: "N.OVA",
-    tags: "AI, WEB3, IDENTITY",
+    tags: "AI, WEB3",
     gradient: "from-cyan-400 to-teal-600",
     align: "center", // 30% to 70%
-    image: "/n-ova.png",
+    image: "/index/n-ova.png",
   },
   {
     title: "Genie",
-    tags: "AI, RAG, MENTAL HEALTH",
+    tags: "AI, DATA",
     gradient: "from-green-500 to-emerald-600",
     align: "left", // 10% to 50%
-    image: "/genie.png",
+    image: "/index/genie.png",
+  },
+  {
+    title: "Tribalyn",
+    tags: "AI, VTON",
+    gradient: "from-indigo-500 to-violet-600",
+    align: "center", // 30% to 70%
+    image: "/index/tribalyn.png",
   },
   {
     title: "ClimaLens",
-    tags: "AI, DATA ANALYTICS, SUSTAINABILITY",
+    tags: "AI, DATA",
     gradient: "from-blue-500 to-cyan-500",
     align: "right", // 50% to 90%
-    image: "/climalens.png",
+    image: "/index/climalens.png",
+  },
+  {
+    title: "Panacea",
+    tags: "PORTFOLIO",
+    gradient: "from-pink-500 to-purple-600",
+    align: "center", // 30% to 70%
+    image: "/works/panacea/panacea.png",
   },
 ]
 
@@ -133,9 +147,10 @@ export function WorksSection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="mb-24 px-12"
+          className="mb-24"
+          style={{ paddingRight: '10%' }}
         >
-          <p className="text-xs tracking-wider font-light">[WORKS]</p>
+          <p className="text-xs tracking-wider font-light text-right">[WORKS]</p>
         </motion.div>
 
         {/* Vertical stacked projects */}

@@ -13,6 +13,7 @@ export default function ProfilePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isTextHovered, setIsTextHovered] = useState(false)
+  const [isFooterOpen, setIsFooterOpen] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -31,13 +32,13 @@ export default function ProfilePage() {
           {/* Custom Cursor */}
           <CustomCursor />
 
-          <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+          <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} isFooterOpen={isFooterOpen} />
 
           {/* Fixed UI Elements */}
           <FixedUIElements onMenuClick={() => setIsMenuOpen(true)} scrollToTop={scrollToTop} />
 
           {/* Profile Content with Background */}
-          <ProfileWithBackground isTextHovered={isTextHovered} setIsTextHovered={setIsTextHovered} />
+          <ProfileWithBackground isTextHovered={isTextHovered} setIsTextHovered={setIsTextHovered} setIsFooterOpen={setIsFooterOpen} />
         </>
       )}
     </>
@@ -47,9 +48,10 @@ export default function ProfilePage() {
 interface ProfileWithBackgroundProps {
   isTextHovered: boolean
   setIsTextHovered: (value: boolean) => void
+  setIsFooterOpen: (isOpen: boolean) => void
 }
 
-function ProfileWithBackground({ isTextHovered, setIsTextHovered }: ProfileWithBackgroundProps) {
+function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpen }: ProfileWithBackgroundProps) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrapperRef, offset: ["start start", "end end"] })
   
@@ -124,7 +126,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered }: ProfileWithB
                   >
                     <div className="overflow-hidden shadow-2xl">
                       <img
-                        src="/profile.jpg"
+                        src="/profile/profile.jpg"
                         alt="Profile visual"
                         className="w-full h-auto object-cover"
                       />
@@ -410,7 +412,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered }: ProfileWithB
             backgroundColor: useTransform(footerTransition, (v) => `rgba(255, 255, 255, ${v})`),
           }}
         >
-          <Footer transitionProgress={footerTransition} />
+          <Footer transitionProgress={footerTransition} onFooterOpen={setIsFooterOpen} />
         </motion.div>
       </div>
     </div>

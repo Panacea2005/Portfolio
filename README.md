@@ -72,7 +72,7 @@ Create an Open Graph image at `public/og-image.png` (1200x630px) for social medi
 ## 🔗 Social Links
 
 - [GitHub](https://github.com/Panacea2005)
-- [LinkedIn](https://www.linkedin.com/in/thiên-nguyễn-lê-trương-65773b29b/)
+- [LinkedIn](https://www.linkedin.com/in/panaceadev)
 - [X/Twitter](https://x.com/panacea___005)
 - [YouTube](https://www.youtube.com/@Panacea2005)
 - [Instagram](https://www.instagram.com/__tthien/)

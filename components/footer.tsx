@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 
 interface FooterProps {
   transitionProgress?: MotionValue<number>;
+  onFooterOpen?: (isOpen: boolean) => void;
 }
 
-export function Footer({ transitionProgress }: FooterProps) {
+export function Footer({ transitionProgress, onFooterOpen }: FooterProps) {
   const [vnTime, setVnTime] = useState<string>("");
 
   useEffect(() => {
@@ -35,6 +36,16 @@ export function Footer({ transitionProgress }: FooterProps) {
         (v) => `rgb(${255 - v * 255}, ${255 - v * 255}, ${255 - v * 255})`
       )
     : "rgb(255, 255, 255)";
+
+  // Notify parent when footer is open (when text is black)
+  useEffect(() => {
+    if (onFooterOpen && transitionProgress) {
+      const unsubscribe = transitionProgress.onChange((latest) => {
+        onFooterOpen(latest > 0.1); // Footer is considered "open" when transition starts
+      });
+      return unsubscribe;
+    }
+  }, [transitionProgress, onFooterOpen]);
 
   // Pattern color: white → black at 98%+
   const patternColor = transitionProgress
@@ -172,15 +183,15 @@ export function Footer({ transitionProgress }: FooterProps) {
 
         {/* Right side - Contact Info, aligned to 90% vertical line */}
         <div
-          className="w-[60%] flex flex-col gap-24 justify-center items-end"
-          style={{ paddingRight: "6.3%" }}
+          className="flex flex-col gap-24 justify-center"
+          style={{ width: "50%", marginLeft: "20%", paddingRight: "10%" }}
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-right"
+            className="text-right w-full"
           >
             <p className="text-xs tracking-wider mb-4 italic">LOCATION</p>
             <p className="text-sm font-light mb-1">Ho Chi Minh City, Vietnam</p>
@@ -195,10 +206,10 @@ export function Footer({ transitionProgress }: FooterProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-right"
+            className="text-right w-full"
           >
             <p className="text-xs tracking-wider mb-4 italic">MAIL</p>
-            <p className="text-sm font-light">ng.t.thien01@gmail.com</p>
+            <p className="text-sm font-light">contact.panacea.dev@gmail.com</p>
           </motion.div>
 
           <motion.div
@@ -206,7 +217,7 @@ export function Footer({ transitionProgress }: FooterProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-right"
+            className="text-right w-full"
           >
             <p className="text-xs tracking-wider mb-4 italic">SNS</p>
             <div className="space-y-2 text-sm font-light">
@@ -220,7 +231,7 @@ export function Footer({ transitionProgress }: FooterProps) {
                 GitHub <span className="text-xs">↗</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/thi%C3%AAn-nguy%E1%BB%85n-l%C3%AA-tr%C6%B0%E1%BB%9Dng-65773b29b/"
+                href="https://www.linkedin.com/in/panaceadev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-end gap-2 hover:opacity-60 transition-opacity"

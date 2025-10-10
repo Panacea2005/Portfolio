@@ -25,7 +25,7 @@ Please fill in the following information about yourself. I'll use this to custom
 ## Social Media Links
 
 **GitHub:** https://github.com/Panacea2005
-**LinkedIn:**https://www.linkedin.com/in/thi%C3%AAn-nguy%E1%BB%85n-l%C3%AA-tr%C6%B0%E1%BB%9Dng-65773b29b/ 
+**LinkedIn:**https://www.linkedin.com/in/panaceadev 
 **Twitter/X:** https://x.com/panacea___005 
 **Instagram (optional):** https://www.instagram.com/__tthien/  
 **YouTube (optional):** https://www.youtube.com/@Panacea2005 

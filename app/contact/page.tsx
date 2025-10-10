@@ -10,6 +10,7 @@ import { CustomCursor } from "@/components/custom-cursor"
 
 export default function ContactPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isFooterOpen, setIsFooterOpen] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -20,18 +21,22 @@ export default function ContactPage() {
       {/* Custom Cursor */}
       <CustomCursor />
 
-      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} isFooterOpen={isFooterOpen} />
 
       {/* Fixed UI Elements */}
       <FixedUIElements onMenuClick={() => setIsMenuOpen(true)} scrollToTop={scrollToTop} />
 
       {/* Contact Details Section with Background */}
-      <ContactWithBackground />
+      <ContactWithBackground setIsFooterOpen={setIsFooterOpen} />
     </>
   )
 }
 
-function ContactWithBackground() {
+interface ContactWithBackgroundProps {
+  setIsFooterOpen: (isOpen: boolean) => void
+}
+
+function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: wrapperRef, offset: ["start start", "end end"] })
   
@@ -196,7 +201,7 @@ function ContactWithBackground() {
                       </motion.h3>
                     </div>
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-lg leading-relaxed font-light space-y-2">
-                      <p>ng.t.thien01@gmail.com</p>
+                      <p>contact.panacea.dev@gmail.com</p>
                       <p>Phone: +84 931 549 083</p>
                     </motion.div>
                   </div>
@@ -267,7 +272,7 @@ function ContactWithBackground() {
                       <a href="https://github.com/Panacea2005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity" data-cursor-text="GITHUB">
                         GitHub <span className="text-xs">↗</span>
                       </a>
-                      <a href="https://www.linkedin.com/in/thi%C3%AAn-nguy%E1%BB%85n-l%C3%AA-tr%C6%B0%E1%BB%9Dng-65773b29b/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity" data-cursor-text="LINKEDIN">
+                      <a href="https://www.linkedin.com/in/panaceadev" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity" data-cursor-text="LINKEDIN">
                         LinkedIn <span className="text-xs">↗</span>
                       </a>
                       <a href="https://x.com/panacea___005" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-60 transition-opacity" data-cursor-text="X / TWITTER">
@@ -310,7 +315,7 @@ function ContactWithBackground() {
             backgroundColor: useTransform(footerTransition, (v) => `rgba(255, 255, 255, ${v})`),
           }}
         >
-          <Footer transitionProgress={footerTransition} />
+          <Footer transitionProgress={footerTransition} onFooterOpen={setIsFooterOpen} />
         </motion.div>
       </div>
     </div>

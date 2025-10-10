@@ -38,7 +38,7 @@ export default function StructuredData() {
     ],
     sameAs: [
       'https://github.com/Panacea2005',
-      'https://www.linkedin.com/in/thiên-nguyễn-lê-trương-65773b29b/',
+      'https://www.linkedin.com/in/panaceadev',
       'https://x.com/panacea___005',
       'https://www.youtube.com/@Panacea2005',
       'https://www.instagram.com/__tthien/',
