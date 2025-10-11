@@ -15,7 +15,7 @@ const projects = [
     title: "Panacea", 
     category: "PORTFOLIO", 
     type: "PLAY",
-    span: "col-span-3 row-span-1",
+    span: "col-span-1 sm:col-span-2 lg:col-span-3 row-span-1",
     image: "/works/panacea/panacea.png"
   },
   { 
@@ -23,7 +23,7 @@ const projects = [
     title: "Flipside", 
     category: "WEB3, DATA", 
     type: "PROJECT",
-    span: "col-span-2 row-span-2",
+    span: "col-span-1 sm:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2",
     image: "/works/flipside/flipside.png"
   },
   { 
@@ -47,7 +47,7 @@ const projects = [
     title: "Genie", 
     category: "AI, DATA", 
     type: "PROJECT",
-    span: "col-span-1 row-span-2",
+    span: "col-span-1 row-span-1 sm:row-span-2",
     image: "/works/genie/genie.png"
   },
   { 
@@ -55,7 +55,7 @@ const projects = [
     title: "LongChau PMS", 
     category: "WEB, E-COMMERCE", 
     type: "PROJECT",
-    span: "col-span-2 row-span-2",
+    span: "col-span-1 sm:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2",
     image: "/works/longchau-pms/longchau-pms.png"
   },
   { 
@@ -63,7 +63,7 @@ const projects = [
     title: "Tribalyn", 
     category: "AI, VTON", 
     type: "PROJECT",
-    span: "col-span-2 row-span-1",
+    span: "col-span-1 sm:col-span-2 row-span-1",
     image: "/works/tribalyn/tribalyn.png"
   },
   { 
@@ -160,13 +160,13 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
 
             <div className="relative z-10">
               {/* Content container with proper alignment */}
-              <div className="relative mb-20" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+              <div className="relative mb-20 px-4 sm:px-6 lg:px-8 xl:px-[10%]">
                 {/* Works Heading and Filters on same line */}
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-0">
                   {/* Works Heading - aligned to left */}
                   <div className="overflow-hidden">
                     <motion.h2 
-                      className="text-9xl font-light tracking-tight leading-none"
+                      className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-light tracking-tight leading-none"
                       initial="hidden"
                       animate="visible"
                       transition={{ staggerChildren: 0.03, delayChildren: 0.8 }}
@@ -191,7 +191,7 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
-                    className="flex gap-16 text-sm"
+                    className="flex flex-col sm:flex-row gap-8 sm:gap-16 text-sm"
                   >
                   <div>
                     <p className="text-white mb-4 font-serif not-italic">Type</p>
@@ -243,9 +243,9 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
                 </div>
               </div>
 
-              <div className="relative" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+              <div className="relative px-4 sm:px-6 lg:px-8 xl:px-[10%]">
                 {/* Projects Grid */}
-                <div className="grid grid-cols-3 auto-rows-[300px] gap-0 mb-32">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[200px] sm:auto-rows-[250px] lg:auto-rows-[300px] gap-0 mb-32">
                   {projects
                     .filter(project => {
                       // Filter by category

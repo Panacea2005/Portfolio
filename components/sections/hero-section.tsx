@@ -146,24 +146,24 @@ export function HeroSection({ onMenuClick, isLoadingComplete = true }: HeroSecti
         initial={{ opacity: 0, y: 20 }}
         animate={isLoaded ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 3.8, duration: 1 }}
-        className="absolute right-12 top-40 max-w-md text-right z-20"
+        className="absolute right-4 sm:right-8 lg:right-12 top-20 sm:top-32 lg:top-40 max-w-xs sm:max-w-sm lg:max-w-md text-right z-20"
       >
-        <p className="text-[11px] leading-relaxed tracking-wide font-light">
+        <p className="text-[9px] sm:text-[10px] lg:text-[11px] leading-relaxed tracking-wide font-light">
           I CREATE INTELLIGENT, INTERACTIVE, AND DECENTRALIZED DIGITAL EXPERIENCES COMBINING AI REASONING,
           BLOCKCHAIN TECHNOLOGY, AND MODERN WEB FRAMEWORKS TO BUILD PRODUCTS THAT EMPOWER CREATIVITY.
         </p>
       </motion.div>
 
       {/* Main Content - smooth fade in */}
-      <main className="relative z-20 px-12 flex items-center min-h-[calc(100vh-100px)]">
+      <main className="relative z-20 px-4 sm:px-8 lg:px-12 flex items-center min-h-[calc(100vh-100px)]">
         <div className="w-full">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 4.2, duration: 1.2 }}
-            className="max-w-4xl mt-92"
+            className="max-w-4xl mt-16 sm:mt-24 lg:mt-32 xl:mt-92"
           >
-            <h1 className="text-7xl leading-tight font-light tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl leading-tight font-light tracking-tight">
               Building <em className="font-serif not-italic">Intelligent</em> Solutions,
               <br />
               <em className="font-serif not-italic">Empowering</em> the Future <em className="font-serif not-italic">of</em> Tech.

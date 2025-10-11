@@ -87,7 +87,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
 
             <div className="relative z-10">
               {/* Top section with Quote, Image, and Profile heading */}
-              <div className="relative mb-24" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+              <div className="relative mb-12 sm:mb-18 lg:mb-24 px-4 sm:px-6 lg:px-8 xl:px-[10%]">
                 {/* Quote Section - at the top right */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -103,7 +103,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                     viewport={{ once: true }}
                     className="text-right"
                   >
-                    <h3 className="text-7xl leading-tight font-light">
+                    <h3 className="text-2xl sm:text-4xl lg:text-6xl xl:text-7xl leading-tight font-light">
                       <em className="font-serif not-italic">Unforgettable</em> impact and emotion
                       <br />
                       Touching in the <em className="font-serif not-italic">heart</em>,
@@ -114,15 +114,14 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                 </motion.div>
 
                 {/* Image (left) and Profile Heading (right, aligned to bottom of image) */}
-                <div className="relative flex items-end gap-0">
+                <div className="relative flex flex-col lg:flex-row items-end gap-8 lg:gap-0">
                   {/* Image - left side, spans to center line (50%) */}
                   <motion.div
                     initial={{ opacity: 0, x: -40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="relative"
-                    style={{ width: '50%' }}
+                    className="relative w-full lg:w-1/2"
                   >
                     <div className="overflow-hidden shadow-2xl">
                       <img
@@ -134,9 +133,9 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                   </motion.div>
 
                   {/* Profile Heading - right side, aligned to bottom */}
-                  <div className="flex-1 overflow-hidden flex justify-end items-end pb-0">
+                  <div className="flex-1 overflow-hidden flex justify-center lg:justify-end items-end pb-0">
                     <motion.h2 
-                      className="text-9xl font-light tracking-tight leading-none"
+                      className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-light tracking-tight leading-none"
                       initial="hidden"
                       animate="visible"
                       transition={{ staggerChildren: 0.03, delayChildren: 0.8 }}
@@ -159,7 +158,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
               </div>
 
               {/* Bio Section - full width like before */}
-              <div className="relative" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+              <div className="relative px-4 sm:px-6 lg:px-8 xl:px-[10%]">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -204,14 +203,14 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                     repeat: isTextHovered ? 0 : Infinity, 
                     ease: isTextHovered ? "easeOut" : "linear" 
                   }}
-                  className="whitespace-nowrap text-[200px] font-light text-white opacity-100"
+                  className="whitespace-nowrap text-[60px] sm:text-[100px] lg:text-[150px] xl:text-[200px] font-light text-white opacity-100"
                 >
                   AI ENGINEER AND WEB DEVELOPER • AI ENGINEER AND WEB DEVELOPER •
                 </motion.div>
               </motion.div>
 
               {/* Sections container - full width, but content aligned to center line */}
-              <div className="relative" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+              <div className="relative px-4 sm:px-6 lg:px-8 xl:px-[10%]">
 
                 {/* Skills Section */}
                 <motion.div
@@ -229,7 +228,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                     viewport={{ once: true }}
                     className="border-t-2 border-white/60 origin-left"
                   />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -282,7 +281,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                     viewport={{ once: true }}
                     className="border-t-2 border-white/60 origin-left"
                   />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -333,7 +332,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                     viewport={{ once: true }}
                     className="border-t-2 border-white/60 origin-left"
                   />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -393,7 +392,7 @@ function ProfileWithBackground({ isTextHovered, setIsTextHovered, setIsFooterOpe
                   viewport={{ once: true }}
                   className="pt-32 mt-16"
                 >
-                  <h3 className="text-6xl leading-tight font-light">
+                  <h3 className="text-2xl sm:text-4xl lg:text-6xl leading-tight font-light">
                     Building the <em className="font-serif not-italic">future</em>,
                     <br />
                     one <em className="font-serif not-italic">intelligent</em> solution at a time.

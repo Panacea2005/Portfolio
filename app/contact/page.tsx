@@ -73,9 +73,9 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
 
             <div className="relative z-10">
               {/* Contact Heading */}
-              <div className="mb-32 overflow-hidden" style={{ paddingLeft: '10%' }}>
+              <div className="mb-16 sm:mb-24 lg:mb-32 overflow-hidden px-4 sm:px-6 lg:px-8 xl:px-[10%]">
                 <motion.h2 
-                  className="text-9xl font-light tracking-tight"
+                  className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-light tracking-tight"
                   initial="hidden"
                   animate="visible"
                   transition={{ staggerChildren: 0.03, delayChildren: 0.8 }}
@@ -96,7 +96,7 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
               </div>
 
               {/* Sections container with proper alignment - from line 1 (10%) to line 5 (90%) */}
-              <div className="relative" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+              <div className="relative px-4 sm:px-6 lg:px-8 xl:px-[10%]">
                 {/* Information Section */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -113,7 +113,7 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
                     viewport={{ once: true }}
                     className="border-t-2 border-white/60 origin-left"
                   />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -145,7 +145,7 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
                 {/* Collaboration Section */}
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.8 }} viewport={{ once: true }} className="relative overflow-hidden" style={{ height: '60vh' }}>
                   <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} transition={{ delay: 0.3, duration: 1, ease: "easeOut" }} viewport={{ once: true }} className="border-t-2 border-white/60 origin-left" />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -177,7 +177,7 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
                 {/* Mail Section */}
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8 }} viewport={{ once: true }} className="relative overflow-hidden" style={{ height: '60vh' }}>
                   <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} transition={{ delay: 0.4, duration: 1, ease: "easeOut" }} viewport={{ once: true }} className="border-t-2 border-white/60 origin-left" />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -210,7 +210,7 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
                 {/* Achievements Section */}
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.8 }} viewport={{ once: true }} className="relative overflow-hidden" style={{ height: '60vh' }}>
                   <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} transition={{ delay: 0.5, duration: 1, ease: "easeOut" }} viewport={{ once: true }} className="border-t-2 border-white/60 origin-left" />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -245,7 +245,7 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
                 {/* SNS Section */}
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.8 }} viewport={{ once: true }} className="relative overflow-hidden" style={{ height: '60vh' }}>
                   <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} transition={{ delay: 0.6, duration: 1, ease: "easeOut" }} viewport={{ once: true }} className="border-t-2 border-white/60 origin-left" />
-                  <div className="pt-16 grid grid-cols-2 gap-0">
+                  <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     <div className="overflow-hidden">
                       <motion.h3 
                         className="text-3xl font-light mb-8"
@@ -291,8 +291,8 @@ function ContactWithBackground({ setIsFooterOpen }: ContactWithBackgroundProps) 
                 {/* Inspirational Text */}
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 0.8 }} viewport={{ once: true }} className="relative overflow-hidden">
                   <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} transition={{ delay: 0.7, duration: 1, ease: "easeOut" }} viewport={{ once: true }} className="border-t-2 border-white/60 origin-left" />
-                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 1, ease: "easeOut" }} viewport={{ once: true }} className="pt-32 mt-16">
-                    <h3 className="text-6xl leading-tight font-light">
+                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 1, ease: "easeOut" }} viewport={{ once: true }} className="pt-16 sm:pt-24 lg:pt-32 mt-8 sm:mt-12 lg:mt-16">
+                    <h3 className="text-2xl sm:text-4xl lg:text-6xl leading-tight font-light">
                       Feel <em className="font-serif not-italic">free</em> to get in touch.
                       <br />
                       {"I'm looking "}

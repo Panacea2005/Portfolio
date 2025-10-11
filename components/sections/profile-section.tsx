@@ -31,14 +31,14 @@ export function ProfileSection() {
       {/* Large Hello at top-left */}
       <motion.h2
         style={{ opacity: helloOpacity }}
-        className="absolute top-16 left-12 z-10 text-[12rem] leading-none font-light tracking-tight pointer-events-none select-none"
+        className="absolute top-8 sm:top-12 lg:top-16 left-4 sm:left-8 lg:left-12 z-10 text-[4rem] sm:text-[6rem] lg:text-[8rem] xl:text-[12rem] leading-none font-light tracking-tight pointer-events-none select-none"
       >
         Hello
       </motion.h2>
 
       {/* Right-aligned profile block - positioned much lower */}
-      <div className="relative z-20 px-12 w-full mb-16">
-        <div className="relative max-w-4xl ml-auto mr-12 mt-48">
+      <div className="relative z-20 px-4 sm:px-8 lg:px-12 w-full mb-8 sm:mb-12 lg:mb-16">
+        <div className="relative max-w-4xl ml-auto mr-4 sm:mr-8 lg:mr-12 mt-24 sm:mt-36 lg:mt-48">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -60,10 +60,10 @@ export function ProfileSection() {
               return (
                 <div key={i} className="relative overflow-hidden">
                   {/* Base dark gray/black */}
-                  <span className="block text-4xl font-light text-gray-900">{node}</span>
+                  <span className="block text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-light text-gray-900">{node}</span>
                   {/* White reveal overlay - clips from right (100%) to left (0%) */}
                   <motion.span
-                    className="absolute inset-0 block text-4xl font-light text-white"
+                    className="absolute inset-0 block text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-light text-white"
                     style={{
                       clipPath: useTransform(lineReveal, (v) => `inset(0 ${(1 - v) * 100}% 0 0)`),
                     }}

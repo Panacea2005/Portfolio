@@ -204,9 +204,9 @@ function ProjectDetailWithBackground({ project, setIsFooterOpen, nextProject, pr
 
             <div className="relative z-10">
               {/* Project Heading */}
-              <div className="mb-32 overflow-hidden" style={{ paddingLeft: '10%' }}>
+              <div className="mb-16 sm:mb-24 lg:mb-32 overflow-hidden px-4 sm:px-6 lg:px-8 xl:px-[10%]">
                 <motion.h2 
-                  className="text-9xl font-light tracking-tight"
+                  className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-light tracking-tight"
                   initial="hidden"
                   animate="visible"
                   transition={{ staggerChildren: 0.03, delayChildren: 0.8 }}
@@ -227,7 +227,7 @@ function ProjectDetailWithBackground({ project, setIsFooterOpen, nextProject, pr
               </div>
 
               {/* Project Hero Image - Full Website Width */}
-              <div className="relative mb-32 w-full">
+              <div className="relative mb-16 sm:mb-24 lg:mb-32 w-full px-4 sm:px-6 lg:px-8 xl:px-0">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -244,8 +244,8 @@ function ProjectDetailWithBackground({ project, setIsFooterOpen, nextProject, pr
               </div>
 
               {/* Project Details Section */}
-              <div className="relative" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
-                <div className="pt-16 grid grid-cols-2 gap-0 mb-32">
+              <div className="relative px-4 sm:px-6 lg:px-8 xl:px-[10%]">
+                <div className="pt-8 sm:pt-12 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 mb-16 sm:mb-24 lg:mb-32">
                   {/* Left Column - Project Info - Left aligned */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -297,7 +297,7 @@ function ProjectDetailWithBackground({ project, setIsFooterOpen, nextProject, pr
                   </motion.div>
                 </div>
 
-                {/* Project Images Section - Using hero image for testing */}
+                {/* Project Images Section */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -309,59 +309,69 @@ function ProjectDetailWithBackground({ project, setIsFooterOpen, nextProject, pr
                   
                   {/* Project images - Full width each */}
                   <div className="space-y-8">
-                    <div className="w-full overflow-hidden" style={{ height: '80vh' }}>
-                      <img
-                        src={project.image}
-                        alt={`${project.title} - Image 1`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="w-full overflow-hidden" style={{ height: '80vh' }}>
-                      <img
-                        src={project.image}
-                        alt={`${project.title} - Image 2`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="w-full overflow-hidden" style={{ height: '80vh' }}>
-                      <img
-                        src={project.image}
-                        alt={`${project.title} - Image 3`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    {(() => {
+                      // Get the project slug for image paths
+                      const projectSlug = project.title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+                      
+                      // Define image counts for each project
+                      const imageCounts: { [key: string]: number } = {
+                        'climalens': 8,
+                        'flipside': 7,
+                        'genie': 6,
+                        'longchau-pms': 11,
+                        'n-ova': 14,
+                        'panacea': 8,
+                        'tribalyn': 5,
+                        'void': 7
+                      }
+                      
+                      const imageCount = imageCounts[projectSlug] || 3 // Default to 3 if not found
+                      
+                      return Array.from({ length: imageCount }, (_, index) => (
+                        <div key={index} className="w-full overflow-hidden aspect-video">
+                          <img
+                            src={`/works/${projectSlug}/${index + 1}.png`}
+                            alt={`${project.title} - Image ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))
+                    })()}
                   </div>
 
                   {/* Navigation Section */}
-                  <div className="flex justify-between items-center pt-16">
+                  <div className="flex flex-col sm:flex-row justify-between items-center pt-8 sm:pt-12 lg:pt-16 gap-4 sm:gap-0">
                     {/* Previous Project */}
                     <Link 
                       href={`/works/${prevProject}`}
-                      className="flex items-center gap-2 text-lg font-light hover:opacity-60 transition-opacity"
+                      className="flex items-center gap-2 text-sm sm:text-lg font-light hover:opacity-60 transition-opacity"
                       data-cursor-text="PREVIOUS PROJECT"
                     >
                       <span className="text-sm">←</span>
-                      PREVIOUS WORKS
+                      <span className="hidden sm:inline">PREVIOUS WORKS</span>
+                      <span className="sm:hidden">PREV</span>
                     </Link>
 
                     {/* Back to Works - Centered */}
                     <div className="flex-1 flex justify-center">
                       <Link 
                         href="/works"
-                        className="flex items-center gap-2 text-lg font-light hover:opacity-60 transition-opacity"
+                        className="flex items-center gap-2 text-sm sm:text-lg font-light hover:opacity-60 transition-opacity"
                         data-cursor-text="BACK TO WORKS"
                       >
-                        BACK TO ALL WORKS
+                        <span className="hidden sm:inline">BACK TO ALL WORKS</span>
+                        <span className="sm:hidden">ALL WORKS</span>
                       </Link>
                     </div>
 
                     {/* Next Project */}
                     <Link 
                       href={`/works/${nextProject}`}
-                      className="flex items-center gap-2 text-lg font-light hover:opacity-60 transition-opacity"
+                      className="flex items-center gap-2 text-sm sm:text-lg font-light hover:opacity-60 transition-opacity"
                       data-cursor-text="NEXT PROJECT"
                     >
-                      NEXT WORKS
+                      <span className="hidden sm:inline">NEXT WORKS</span>
+                      <span className="sm:hidden">NEXT</span>
                       <span className="text-sm">→</span>
                     </Link>
                   </div>
