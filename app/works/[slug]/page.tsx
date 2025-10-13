@@ -12,6 +12,16 @@ import { CustomCursor } from "@/components/custom-cursor"
 
 // Project data - you can expand this with more details
 const projects = {
+  "sweetlife": {
+    id: 9,
+    title: "SweetLife",
+    category: "WEB, FRONTEND",
+    type: "PROJECT",
+    image: "/works/sweetlife/sweetlife.png",
+    description: "A responsive website for an ice cream restaurant, built with semantic HTML, modern CSS, and vanilla JavaScript. Focused on delightful UI, accessibility, and performance.",
+    credits: "Frontend: Panacea",
+    visitLink: "https://sweetlife.vercel.app"
+  },
   "panacea": {
     id: 6,
     title: "Panacea",
@@ -95,7 +105,7 @@ const projects = {
 }
 
 // Project order for navigation
-const projectOrder = ["panacea", "flipside", "void", "n-ova", "genie", "longchau-pms", "tribalyn", "climalens"]
+const projectOrder = ["panacea", "sweetlife", "flipside", "void", "n-ova", "genie", "longchau-pms", "tribalyn", "climalens"]
 
 export default function ProjectDetailPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -321,6 +331,7 @@ function ProjectDetailWithBackground({ project, setIsFooterOpen, nextProject, pr
                         'longchau-pms': 11,
                         'n-ova': 14,
                         'panacea': 8,
+                        'sweetlife': 7,
                         'tribalyn': 5,
                         'void': 7
                       }

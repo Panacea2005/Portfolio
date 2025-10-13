@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
 import { MenuOverlay } from "@/components/menu-overlay"
@@ -11,67 +11,75 @@ import { CustomCursor } from "@/components/custom-cursor"
 
 const projects = [
   { 
-    id: 6, 
+    id: 1, 
     title: "Panacea", 
     category: "PORTFOLIO", 
     type: "PLAY",
-    span: "col-span-1 sm:col-span-2 lg:col-span-3 row-span-1",
+    span: "col-span-1 sm:col-span-2 lg:col-span-3 row-span-1 lg:row-span-2",
     image: "/works/panacea/panacea.png"
   },
   { 
-    id: 1, 
-    title: "Flipside", 
-    category: "WEB3, DATA", 
+    id: 2, 
+    title: "SweetLife", 
+    category: "WEB, FRONTEND", 
     type: "PROJECT",
     span: "col-span-1 sm:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2",
-    image: "/works/flipside/flipside.png"
-  },
-  { 
-    id: 2, 
-    title: "VOID", 
-    category: "AI, WEB3", 
-    type: "PROJECT",
-    span: "col-span-1 row-span-1",
-    image: "/works/void/void.png"
+    image: "/works/sweetlife/sweetlife.png"
   },
   { 
     id: 3, 
-    title: "N.OVA", 
-    category: "AI, WEB3", 
+    title: "Flipside", 
+    category: "WEB3, DATA", 
     type: "PROJECT",
-    span: "col-span-1 row-span-1",
-    image: "/works/n-ova/n-ova.png"
+    span: "col-span-1 sm:col-span-2 lg:col-span-1 row-span-1 sm:row-span-2 lg:row-span-2",
+    image: "/works/flipside/flipside.png"
   },
   { 
     id: 4, 
-    title: "Genie", 
-    category: "AI, DATA", 
+    title: "VOID", 
+    category: "AI, WEB3", 
     type: "PROJECT",
-    span: "col-span-1 row-span-1 sm:row-span-2",
-    image: "/works/genie/genie.png"
-  },
-  { 
-    id: 8, 
-    title: "LongChau PMS", 
-    category: "WEB, E-COMMERCE", 
-    type: "PROJECT",
-    span: "col-span-1 sm:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2",
-    image: "/works/longchau-pms/longchau-pms.png"
-  },
-  { 
-    id: 7, 
-    title: "Tribalyn", 
-    category: "AI, VTON", 
-    type: "PROJECT",
-    span: "col-span-1 sm:col-span-2 row-span-1",
-    image: "/works/tribalyn/tribalyn.png"
+    span: "col-span-1 row-span-1 lg:row-span-1",
+    image: "/works/void/void.png"
   },
   { 
     id: 5, 
+    title: "N.OVA", 
+    category: "AI, WEB3", 
+    type: "PROJECT",
+    span: "col-span-1 sm:col-span-2 lg:col-span-2 row-span-1",
+    image: "/works/n-ova/n-ova.png"
+  },
+  { 
+    id: 6, 
+    title: "Genie", 
+    category: "AI, DATA", 
+    type: "PROJECT",
+    span: "col-span-1 row-span-1 sm:row-span-2 lg:row-span-2",
+    image: "/works/genie/genie.png"
+  },
+  { 
+    id: 7, 
+    title: "LongChau PMS", 
+    category: "WEB, E-COMMERCE", 
+    type: "PROJECT",
+    span: "col-span-1 sm:col-span-2 lg:col-span-2 row-span-1 sm:row-span-2 lg:row-span-2",
+    image: "/works/longchau-pms/longchau-pms.png"
+  },
+  { 
+    id: 8, 
+    title: "Tribalyn", 
+    category: "AI, VTON", 
+    type: "PROJECT",
+    span: "col-span-1 sm:col-span-2 row-span-1 lg:row-span-1",
+    image: "/works/tribalyn/tribalyn.png"
+  },
+  { 
+    id: 9, 
     title: "ClimaLens", 
     category: "AI, DATA", 
     type: "PROJECT",
-    span: "col-span-1 row-span-1",
+    span: "col-span-1 row-span-1 lg:row-span-1",
     image: "/works/climalens/climalens.png"
   },
 ]
@@ -127,8 +135,19 @@ function WorksWithBackground({ selectedType, setSelectedType, selectedCategory, 
   
   const footerTransition = useTransform(scrollYProgress, [0.98, 1], [0, 1])
   
-  // Simplified categories
-  const categories = ["ALL", "WEB3", "AI", "DATA", "VTON", "PORTFOLIO", "WEB", "E-COMMERCE"]
+  // Auto-derived categories from projects (e.g., WEB, FRONTEND, etc.)
+  const categories = useMemo(() => {
+    const categorySet = new Set<string>(["ALL"]) // Always include ALL
+    projects.forEach((project) => {
+      if (!project.category) return
+      project.category
+        .split(",")
+        .map(part => part.trim().toUpperCase())
+        .filter(Boolean)
+        .forEach(cat => categorySet.add(cat))
+    })
+    return Array.from(categorySet)
+  }, [])
   
   return (
     <div ref={wrapperRef} className="relative">

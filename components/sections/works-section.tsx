@@ -5,6 +5,20 @@ import { useState } from "react"
 
 const projects = [
   {
+    title: "Panacea",
+    tags: "PORTFOLIO",
+    gradient: "from-pink-500 to-purple-600",
+    align: "center", // 30% to 70%
+    image: "/index/panacea.png",
+  },
+  {
+    title: "SweetLife",
+    tags: "WEB, FRONTEND",
+    gradient: "from-rose-500 to-pink-600",
+    align: "left", // 10% to 50%
+    image: "/index/sweetlife.png",
+  },
+  {
     title: "Flipside",
     tags: "WEB3, DATA",
     gradient: "from-orange-500 to-red-600",
@@ -52,13 +66,6 @@ const projects = [
     gradient: "from-blue-500 to-cyan-500",
     align: "right", // 50% to 90%
     image: "/index/climalens.png",
-  },
-  {
-    title: "Panacea",
-    tags: "PORTFOLIO",
-    gradient: "from-pink-500 to-purple-600",
-    align: "center", // 30% to 70%
-    image: "/works/panacea/panacea.png",
   },
 ]
 

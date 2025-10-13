@@ -26,12 +26,16 @@ Modern portfolio showcasing AI/ML, Web3, and full‑stack projects with smooth m
 ### Sections
 - Home, Profile, Works, Contact
 
-### Featured Projects
-- Flipside — DeFi/NFT analytics (Web3, Data)
-- VOID — AI playground on Solana (AI, Web3)
-- N.OVA — AI‑native Web3 identity (AI, Web3)
-- Genie — LLM mental health assistant (AI, Data)
-- LongChau PMS — Pharmacy management & e‑commerce (Web, Supabase, PRJ)
+### Projects
+- Panacea — Portfolio (Type: PLAY, Category: PORTFOLIO)
+- SweetLife — Ice cream restaurant website (Type: PROJECT, Category: WEB, FRONTEND)
+- Flipside — DeFi/NFT analytics (Type: PROJECT, Category: WEB3, DATA)
+- VOID — AI playground on Solana (Type: PROJECT, Category: AI, WEB3)
+- N.OVA — AI‑native Web3 identity (Type: PROJECT, Category: AI, WEB3)
+- Genie — LLM mental health assistant (Type: PROJECT, Category: AI, DATA)
+- LongChau PMS — Pharmacy management & e‑commerce (Type: PROJECT, Category: WEB, E‑COMMERCE)
+- Tribalyn — Virtual try‑on for traditional costumes (Type: PROJECT, Category: AI, VTON)
+- ClimaLens — Climate data analytics (Type: PROJECT, Category: AI, DATA)
 
 ### Development
 ```bash
